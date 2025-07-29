@@ -1,5 +1,3 @@
-using OptimalyBlueprint.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,10 +10,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
-
-// Register OptimalyBlueprint services
-builder.Services.AddScoped<IMockDataService, MockDataService>();
-builder.Services.AddScoped<IPricingService, PricingService>();
 
 var app = builder.Build();
 
