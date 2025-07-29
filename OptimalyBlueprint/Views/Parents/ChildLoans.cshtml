@@ -1,0 +1,308 @@
+@{
+    ViewData["Title"] = "Výpůjčky dítěte";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Detailní přehled výpůjček</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Parents" asp-action="Index">Rodiče</a></li>
+                    <li class="breadcrumb-item active">Výpůjčky dítěte</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Informace o dítěti -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-user mr-1"></i>
+                            Informace o žákovi
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle" style="width: 100px; height: 100px;" alt="Foto žáka">
+                            </div>
+                            <div class="col-md-10">
+                                <h4>Jana Nováková</h4>
+                                <p><strong>Třída:</strong> 7.A</p>
+                                <p><strong>Číslo žáka:</strong> 20250345</p>
+                                <p><strong>Aktivní od:</strong> 1.9.2024</p>
+                                <p><strong>Zodpovědnost:</strong> 
+                                    <span class="text-success">⭐⭐⭐⭐⭐</span> Výborná (95% včasných vrácení)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filtry -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter mr-1"></i>
+                            Filtry
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="statusFilter">Stav výpůjčky</label>
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Všechny stavy</option>
+                                        <option value="active">Aktivní</option>
+                                        <option value="returned">Vrácené</option>
+                                        <option value="overdue">Po termínu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="genreFilter">Žánr</label>
+                                    <select class="form-control" id="genreFilter">
+                                        <option value="">Všechny žánry</option>
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="textbook">Učebnice</option>
+                                        <option value="adventure">Dobrodružné</option>
+                                        <option value="fairytale">Pohádky</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Období</label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" value="2024-09-01">
+                                        <div class="input-group-prepend input-group-append">
+                                            <span class="input-group-text">do</span>
+                                        </div>
+                                        <input type="date" class="form-control" value="2025-07-29">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="searchTerm">Hledat knihu</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="searchTerm" placeholder="Název nebo autor">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Historie výpůjček -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Kompletní historie výpůjček
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-success btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export do Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Kniha</th>
+                                        <th>Žánr</th>
+                                        <th>Půjčeno</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Skutečně vráceno</th>
+                                        <th>Doba čtení</th>
+                                        <th>Stav</th>
+                                        <th>Hodnocení</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Malý princ</strong><br>
+                                                    <small class="text-muted">Antoine de Saint-Exupéry</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Fantasy</span></td>
+                                        <td>22.7.2025</td>
+                                        <td>12.8.2025</td>
+                                        <td><span class="text-success">Aktivní</span></td>
+                                        <td>7 dní</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Harry Potter a kámen mudrců</strong><br>
+                                                    <small class="text-muted">J.K. Rowling</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-info">Fantasy</span></td>
+                                        <td>25.7.2025</td>
+                                        <td>15.8.2025</td>
+                                        <td><span class="text-success">Aktivní</span></td>
+                                        <td>4 dny</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Babička</strong><br>
+                                                    <small class="text-muted">Božena Němcová</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-secondary">Próza</span></td>
+                                        <td>5.7.2025</td>
+                                        <td>19.7.2025</td>
+                                        <td>20.7.2025</td>
+                                        <td>15 dní</td>
+                                        <td><span class="badge badge-secondary">Vráceno</span></td>
+                                        <td>
+                                            <span class="text-warning">⭐⭐⭐⭐</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Matematika pro 7. třídu</strong><br>
+                                                    <small class="text-muted">kolektiv autorů</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-warning">Učebnice</span></td>
+                                        <td>1.7.2025</td>
+                                        <td>15.7.2025</td>
+                                        <td>15.7.2025</td>
+                                        <td>14 dní</td>
+                                        <td><span class="badge badge-secondary">Vráceno</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Robinson Crusoe</strong><br>
+                                                    <small class="text-muted">Daniel Defoe</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Dobrodružné</span></td>
+                                        <td>20.6.2025</td>
+                                        <td>4.7.2025</td>
+                                        <td>10.7.2025</td>
+                                        <td>20 dní</td>
+                                        <td><span class="badge badge-warning">Pozdě vráceno</span></td>
+                                        <td>
+                                            <span class="text-success">⭐⭐⭐⭐⭐</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 30px; height: 40px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Děti z Bullerbynu</strong><br>
+                                                    <small class="text-muted">Astrid Lindgren</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Pohádky</span></td>
+                                        <td>10.6.2025</td>
+                                        <td>24.6.2025</td>
+                                        <td>22.6.2025</td>
+                                        <td>12 dní</td>
+                                        <td><span class="badge badge-secondary">Vráceno</span></td>
+                                        <td>
+                                            <span class="text-success">⭐⭐⭐⭐⭐</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info">
+                                    Zobrazeno 1 až 6 z 15 záznamů
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled">
+                                            <a class="page-link">Předchozí</a>
+                                        </li>
+                                        <li class="paginate_button page-item active">
+                                            <a class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item">
+                                            <a class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item">
+                                            <a class="page-link">3</a>
+                                        </li>
+                                        <li class="paginate_button page-item next">
+                                            <a class="page-link">Další</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

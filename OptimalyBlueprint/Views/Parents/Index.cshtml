@@ -1,0 +1,352 @@
+@{
+    ViewData["Title"] = "Přehled pro rodiče";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Rodinný přehled knihovny</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Rodiče</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Výběr dítěte (pokud má rodič více dětí) -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-child mr-1"></i>
+                            Výběr dítěte
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="childSelect">Vyberte dítě pro zobrazení informací</label>
+                            <select class="form-control" id="childSelect" onchange="changeChild()">
+                                <option value="1" selected>Jana Nováková - 7.A</option>
+                                <option value="2">Pavel Novák - 9.A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Přehled aktuálních výpůjček -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>2</h3>
+                        <p>Aktuální výpůjčky</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>0</h3>
+                        <p>Po termínu</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>1</h3>
+                        <p>Aktivní rezervace</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-secondary">
+                    <div class="inner">
+                        <h3>15</h3>
+                        <p>Přečtených knih</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Aktuální výpůjčky -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-book mr-1"></i>
+                            Aktuální výpůjčky
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kniha</th>
+                                        <th>Půjčeno</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Stav</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 40px; height: 50px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Malý princ</strong><br>
+                                                    <small class="text-muted">Antoine de Saint-Exupéry</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>22.7.2025</td>
+                                        <td>12.8.2025</td>
+                                        <td><span class="badge badge-success">V pořádku</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/book-cover.jpg" class="img-thumbnail mr-2" style="width: 40px; height: 50px;" alt="Kniha">
+                                                <div>
+                                                    <strong>Harry Potter a kámen mudrců</strong><br>
+                                                    <small class="text-muted">J.K. Rowling</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>25.7.2025</td>
+                                        <td>15.8.2025</td>
+                                        <td><span class="badge badge-success">V pořádku</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Statistiky čtení -->
+            <div class="col-md-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Statistiky čtení
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress-group">
+                            Průměrná doba čtení
+                            <span class="float-right"><b>14 dní</b></span>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-primary" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-group">
+                            Zodpovědnost vrácení
+                            <span class="float-right"><b>95%</b></span>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-success" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-group">
+                            Aktivita tento měsíc
+                            <span class="float-right"><b>3 knihy</b></span>
+                            <div class="progress progress-sm">
+                                <div class="progress-bar bg-warning" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Oblíbené žánry a historie -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-heart mr-1"></i>
+                            Oblíbené žánry
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Fantasy</strong></td>
+                                        <td><span class="badge badge-success">6 knih</span></td>
+                                        <td>40%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dobrodružné</strong></td>
+                                        <td><span class="badge badge-info">4 knihy</span></td>
+                                        <td>27%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Učebnice</strong></td>
+                                        <td><span class="badge badge-warning">3 knihy</span></td>
+                                        <td>20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Pohádky</strong></td>
+                                        <td><span class="badge badge-secondary">2 knihy</span></td>
+                                        <td>13%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Poslední přečtené knihy
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Babička</strong><br>
+                                            <small class="text-muted">Božena Němcová</small>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">Vráceno: 20.7.2025</small><br>
+                                            <span class="badge badge-success">Včas</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Matematika 7. tř.</strong><br>
+                                            <small class="text-muted">kolektiv autorů</small>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">Vráceno: 15.7.2025</small><br>
+                                            <span class="badge badge-success">Včas</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Robinson Crusoe</strong><br>
+                                            <small class="text-muted">Daniel Defoe</small>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">Vráceno: 10.7.2025</small><br>
+                                            <span class="badge badge-success">Včas</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upozornění a kontakt -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bell mr-1"></i>
+                            Upozornění a důležité informace
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h5><i class="icon fas fa-info"></i> Informace</h5>
+                            Všechny knihy jsou vráceny včas. Vaše dítě je zodpovědný čtenář!
+                        </div>
+                        
+                        <div class="alert alert-success">
+                            <h5><i class="icon fas fa-trophy"></i> Úspěch</h5>
+                            Jana si tento měsíc přečetla 3 knihy a získala od knihovníka pochvalu za pravidelné čtení.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Kontakt knihovny
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Knihovník:</strong> Mgr. Tomáš Novák</p>
+                        <p><strong>Email:</strong> knihovna@skolajablunkov.cz</p>
+                        <p><strong>Telefon:</strong> +420 558 123 456</p>
+                        <p><strong>Ordinační hodiny:</strong><br>
+                        Po-Pá: 8:00 - 15:00</p>
+                        
+                        <button class="btn btn-info btn-block">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Napsat knihovníkovi
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+function changeChild() {
+    const select = document.getElementById('childSelect');
+    const childId = select.value;
+    
+    // Mock změna dat podle vybraného dítěte
+    if (childId === '2') {
+        // Pavel Novák - 9.A
+        document.querySelector('.small-box.bg-info h3').textContent = '1';
+        document.querySelector('.small-box.bg-warning h3').textContent = '0'; 
+        document.querySelector('.small-box.bg-secondary h3').textContent = '8';
+    } else {
+        // Jana Nováková - 7.A (výchozí)
+        document.querySelector('.small-box.bg-info h3').textContent = '2';
+        document.querySelector('.small-box.bg-warning h3').textContent = '1';
+        document.querySelector('.small-box.bg-secondary h3').textContent = '15';
+    }
+}
+</script>

@@ -1,0 +1,374 @@
+@{
+    ViewData["Title"] = "Správa rezervací";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Správa rezervací</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Reservations" asp-action="Index">Rezervace</a></li>
+                    <li class="breadcrumb-item active">Správa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Filtry -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter mr-1"></i>
+                            Filtry
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="statusFilter">Stav rezervace</label>
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Všechny stavy</option>
+                                        <option value="active">Aktivní</option>
+                                        <option value="completed">Dokončené</option>
+                                        <option value="expired">Prošlé</option>
+                                        <option value="cancelled">Zrušené</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="userTypeFilter">Typ uživatele</label>
+                                    <select class="form-control" id="userTypeFilter">
+                                        <option value="">Všichni uživatelé</option>
+                                        <option value="student">Žáci</option>
+                                        <option value="teacher">Učitelé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Období</label>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="date" class="form-control" id="dateFrom" value="2025-07-01">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="date" class="form-control" id="dateTo" value="2025-07-29">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="searchTerm">Hledat</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="searchTerm" placeholder="Uživatel nebo kniha">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seznam rezervací -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Seznam všech rezervací
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Reservations" asp-action="Create" class="btn btn-success btn-sm">
+                                <i class="fas fa-plus mr-1"></i>
+                                Nová rezervace
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Uživatel</th>
+                                        <th>Kniha</th>
+                                        <th>Vytvořeno</th>
+                                        <th>Platnost do</th>
+                                        <th>Stav</th>
+                                        <th>Priorita</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Markéta Dvořáková</strong><br>
+                                                    <small class="text-muted">6.A - Žák</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Děti z Bullerbynu</strong><br>
+                                            <small class="text-muted">Astrid Lindgren</small>
+                                        </td>
+                                        <td>29.7.2025 14:45</td>
+                                        <td>3.8.2025</td>
+                                        <td><span class="badge badge-info">Aktivní</span></td>
+                                        <td><span class="badge badge-secondary">Normální</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Půjčit knihu">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Upravit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Zrušit">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Pavel Novák</strong><br>
+                                                    <small class="text-muted">8.A - Žák</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Harry Potter a kámen mudrců</strong><br>
+                                            <small class="text-muted">J.K. Rowling</small>
+                                        </td>
+                                        <td>29.7.2025 13:20</td>
+                                        <td>5.8.2025</td>
+                                        <td><span class="badge badge-info">Aktivní</span></td>
+                                        <td><span class="badge badge-warning">Vysoká</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Půjčit knihu">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Upravit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Zrušit">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user3-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Marie Dvořáková</strong><br>
+                                                    <small class="text-muted">Učitelka</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Metodika výuky češtiny</strong><br>
+                                            <small class="text-muted">J. Svoboda</small>
+                                        </td>
+                                        <td>29.7.2025 11:15</td>
+                                        <td>10.8.2025</td>
+                                        <td><span class="badge badge-info">Aktivní</span></td>
+                                        <td><span class="badge badge-secondary">Normální</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Půjčit knihu">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Upravit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Zrušit">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#004</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user4-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Anna Svobodová</strong><br>
+                                                    <small class="text-muted">8.B - Žák</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Chemie pro 8. třídu</strong><br>
+                                            <small class="text-muted">kolektiv autorů</small>
+                                        </td>
+                                        <td>28.7.2025 16:30</td>
+                                        <td>30.7.2025</td>
+                                        <td><span class="badge badge-warning">Vyprší zítra</span></td>
+                                        <td><span class="badge badge-secondary">Normální</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Půjčit knihu">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Upravit">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Zrušit">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#005</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Tomáš Svoboda</strong><br>
+                                                    <small class="text-muted">8.B - Žák</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Matematika - příprava k maturitě</strong><br>
+                                            <small class="text-muted">kolektiv autorů</small>
+                                        </td>
+                                        <td>28.7.2025 14:15</td>
+                                        <td>25.7.2025</td>
+                                        <td><span class="badge badge-danger">Prošlá</span></td>
+                                        <td><span class="badge badge-secondary">Normální</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-secondary" title="Nelze půjčit - prošlá" disabled>
+                                                    <i class="fas fa-ban"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-success" title="Obnovit rezervaci">
+                                                    <i class="fas fa-redo"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" title="Smazat">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#006</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Jan Procházka</strong><br>
+                                                    <small class="text-muted">9.A - Žák</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <strong>Dějiny světa</strong><br>
+                                            <small class="text-muted">M. Novák</small>
+                                        </td>
+                                        <td>27.7.2025 10:45</td>
+                                        <td>-</td>
+                                        <td><span class="badge badge-success">Dokončeno</span></td>
+                                        <td><span class="badge badge-secondary">Normální</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-secondary" title="Archivováno" disabled>
+                                                    <i class="fas fa-archive"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-5">
+                                <div class="dataTables_info">
+                                    Zobrazeno 1 až 6 z 23 záznamů
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-7">
+                                <div class="dataTables_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button page-item previous disabled">
+                                            <a class="page-link">Předchozí</a>
+                                        </li>
+                                        <li class="paginate_button page-item active">
+                                            <a class="page-link">1</a>
+                                        </li>
+                                        <li class="paginate_button page-item">
+                                            <a class="page-link">2</a>
+                                        </li>
+                                        <li class="paginate_button page-item">
+                                            <a class="page-link">3</a>
+                                        </li>
+                                        <li class="paginate_button page-item next">
+                                            <a class="page-link">Další</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

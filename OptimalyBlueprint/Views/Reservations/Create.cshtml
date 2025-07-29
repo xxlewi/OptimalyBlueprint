@@ -1,0 +1,278 @@
+@{
+    ViewData["Title"] = "Nová rezervace";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Vytvořit novou rezervaci</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Reservations" asp-action="Index">Rezervace</a></li>
+                    <li class="breadcrumb-item active">Nová rezervace</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <form method="post">
+            <div class="row">
+                <!-- Výběr uživatele -->
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user mr-1"></i>
+                                Výběr uživatele
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="userType">Typ uživatele</label>
+                                <select class="form-control" id="userType" name="userType" required>
+                                    <option value="">Vyberte typ uživatele</option>
+                                    <option value="student">Žák</option>
+                                    <option value="teacher">Učitel</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="userId">Uživatel</label>
+                                <select class="form-control" id="userId" name="userId" required>
+                                    <option value="">Nejprve vyberte typ uživatele</option>
+                                </select>
+                            </div>
+                            
+                            <div class="alert alert-info" id="userInfo" style="display: none;">
+                                <h5><i class="icon fas fa-info"></i> Informace o uživateli:</h5>
+                                <p id="userDetails"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Výběr knihy -->
+                <div class="col-md-6">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-book mr-1"></i>
+                                Výběr knihy
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="searchType">Hledat podle</label>
+                                <select class="form-control" id="searchType" name="searchType">
+                                    <option value="title">Název knihy</option>
+                                    <option value="author">Autor</option>
+                                    <option value="genre">Žánr</option>
+                                    <option value="isbn">ISBN</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="searchTerm">Hledaný výraz</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Zadejte hledaný výraz">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" type="button" id="searchButton">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="bookId">Dostupné knihy</label>
+                                <select class="form-control" id="bookId" name="bookId" required>
+                                    <option value="">Vyhledejte knihy</option>
+                                </select>
+                            </div>
+                            
+                            <div class="alert alert-warning" id="bookInfo" style="display: none;">
+                                <h5><i class="icon fas fa-book"></i> Detail knihy:</h5>
+                                <p id="bookDetails"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nastavení rezervace -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cog mr-1"></i>
+                                Nastavení rezervace
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="reservationDate">Datum rezervace</label>
+                                        <input type="date" class="form-control" id="reservationDate" name="reservationDate" value="2025-07-29" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="expiryDate">Platnost do</label>
+                                        <input type="date" class="form-control" id="expiryDate" name="expiryDate" value="2025-08-05" required>
+                                        <small class="form-text text-muted">Výchozí platnost je 7 dní</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="priority">Priorita</label>
+                                        <select class="form-control" id="priority" name="priority">
+                                            <option value="normal">Normální</option>
+                                            <option value="high">Vysoká</option>
+                                            <option value="urgent">Urgentní</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Poznámky k rezervaci</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Volitelné poznámky k rezervaci..."></textarea>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="notifyUser" name="notifyUser" checked>
+                                <label class="form-check-label" for="notifyUser">
+                                    Upozornit uživatele emailem
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tlačítka -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-bookmark mr-1"></i>
+                                Vytvořit rezervaci
+                            </button>
+                            <button type="button" class="btn btn-info btn-lg ml-2" onclick="createAndNotify()">
+                                <i class="fas fa-bell mr-1"></i>
+                                Vytvořit a upozornit
+                            </button>
+                            <a asp-controller="Reservations" asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                                <i class="fas fa-times mr-1"></i>
+                                Zrušit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</section>
+
+<script>
+// Mock data pro demonstraci
+const mockStudents = [
+    { id: 1, name: "Jana Nováková", class: "7.A", currentLoans: 2 },
+    { id: 2, name: "Pavel Procházka", class: "9.A", currentLoans: 1 },
+    { id: 3, name: "Markéta Dvořáková", class: "6.A", currentLoans: 0 }
+];
+
+const mockTeachers = [
+    { id: 1, name: "Mgr. Marie Dvořáková", subject: "Čeština", currentLoans: 3 },
+    { id: 2, name: "Mgr. Petr Novák", subject: "Matematika", currentLoans: 1 }
+];
+
+const mockBooks = [
+    { id: 1, title: "Malý princ", author: "Antoine de Saint-Exupéry", available: true },
+    { id: 2, title: "Harry Potter a kámen mudrců", author: "J.K. Rowling", available: true },
+    { id: 3, title: "Babička", author: "Božena Němcová", available: false }
+];
+
+document.getElementById('userType').addEventListener('change', function() {
+    const userSelect = document.getElementById('userId');
+    userSelect.innerHTML = '<option value="">Vyberte uživatele</option>';
+    
+    const users = this.value === 'student' ? mockStudents : mockTeachers;
+    users.forEach(user => {
+        const option = document.createElement('option');
+        option.value = user.id;
+        option.textContent = this.value === 'student' ? 
+            `${user.name} (${user.class})` : 
+            `${user.name} - ${user.subject}`;
+        userSelect.appendChild(option);
+    });
+});
+
+document.getElementById('userId').addEventListener('change', function() {
+    const userInfo = document.getElementById('userInfo');
+    const userDetails = document.getElementById('userDetails');
+    
+    if (this.value) {
+        const userType = document.getElementById('userType').value;
+        const users = userType === 'student' ? mockStudents : mockTeachers;
+        const user = users.find(u => u.id == this.value);
+        
+        userDetails.innerHTML = `
+            <strong>${user.name}</strong><br>
+            ${userType === 'student' ? `Třída: ${user.class}` : `Předmět: ${user.subject}`}<br>
+            Aktuální výpůjčky: ${user.currentLoans}
+        `;
+        userInfo.style.display = 'block';
+    } else {
+        userInfo.style.display = 'none';
+    }
+});
+
+document.getElementById('searchButton').addEventListener('click', function() {
+    const bookSelect = document.getElementById('bookId');
+    bookSelect.innerHTML = '<option value="">Vyberte knihu</option>';
+    
+    mockBooks.forEach(book => {
+        const option = document.createElement('option');
+        option.value = book.id;
+        option.textContent = `${book.title} - ${book.author} ${book.available ? '(Dostupná)' : '(Vypůjčená)'}`;
+        option.disabled = !book.available;
+        bookSelect.appendChild(option);
+    });
+});
+
+document.getElementById('bookId').addEventListener('change', function() {
+    const bookInfo = document.getElementById('bookInfo');
+    const bookDetails = document.getElementById('bookDetails');
+    
+    if (this.value) {
+        const book = mockBooks.find(b => b.id == this.value);
+        bookDetails.innerHTML = `
+            <strong>${book.title}</strong><br>
+            Autor: ${book.author}<br>
+            Stav: ${book.available ? 'Dostupná k rezervaci' : 'Momentálně vypůjčená'}
+        `;
+        bookInfo.style.display = 'block';
+    } else {
+        bookInfo.style.display = 'none';
+    }
+});
+
+function createAndNotify() {
+    document.getElementById('notifyUser').checked = true;
+    document.querySelector('form').submit();
+}
+</script>
