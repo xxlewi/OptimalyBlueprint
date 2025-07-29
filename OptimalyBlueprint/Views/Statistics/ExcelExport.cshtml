@@ -1,0 +1,412 @@
+@{
+    ViewData["Title"] = "Export do Excel";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Export dat do Excel</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Reporty a nástroje</li>
+                    <li class="breadcrumb-item active">Export do Excel</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Rychlé exporty -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt mr-1"></i>
+                            Rychlé exporty
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-book mr-1"></i>
+                            Katalog všech knih
+                        </button>
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-users mr-1"></i>
+                            Seznam všech žáků
+                        </button>
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-chalkboard-teacher mr-1"></i>
+                            Seznam učitelů
+                        </button>
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-exchange-alt mr-1"></i>
+                            Aktivní výpůjčky
+                        </button>
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            Knihy po termínu
+                        </button>
+                        <button class="btn btn-success btn-block">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Kompletní statistiky
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Nedávno exportované soubory
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Název souboru</th>
+                                        <th>Datum</th>
+                                        <th>Velikost</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>katalog_knih_2025-07-29.xlsx</td>
+                                        <td>29.7.2025 14:30</td>
+                                        <td>2.3 MB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>aktivni_vypujcky_2025-07-28.xlsx</td>
+                                        <td>28.7.2025 16:15</td>
+                                        <td>456 KB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>seznam_zaku_2025-07-27.xlsx</td>
+                                        <td>27.7.2025 10:45</td>
+                                        <td>234 KB</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pokročilý export -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cogs mr-1"></i>
+                            Pokročilý export s filtry
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exportType">Co exportovat</label>
+                                        <select class="form-control" id="exportType">
+                                            <option value="books">Knihy</option>
+                                            <option value="students">Žáci</option>
+                                            <option value="teachers">Učitelé</option>
+                                            <option value="loans">Výpůjčky</option>
+                                            <option value="overdue">Po termínu</option>
+                                            <option value="statistics">Statistiky</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Časové období</label>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input type="date" class="form-control" id="dateFrom" value="2025-01-01">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="date" class="form-control" id="dateTo" value="2025-07-29">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="format">Formát souboru</label>
+                                        <select class="form-control" id="format">
+                                            <option value="xlsx">Excel (.xlsx)</option>
+                                            <option value="csv">CSV (.csv)</option>
+                                            <option value="pdf">PDF</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Filtry pro knihy -->
+                            <div id="bookFilters" class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="genreFilter">Žánr</label>
+                                        <select class="form-control" id="genreFilter">
+                                            <option value="">Všechny žánry</option>
+                                            <option value="proza">Próza</option>
+                                            <option value="poezie">Poezie</option>
+                                            <option value="ucebnice">Učebnice</option>
+                                            <option value="fantasy">Fantasy</option>
+                                            <option value="detektivka">Detektivka</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="statusFilter">Stav knihy</label>
+                                        <select class="form-control" id="statusFilter">
+                                            <option value="">Všechny</option>
+                                            <option value="available">Dostupné</option>
+                                            <option value="borrowed">Vypůjčené</option>
+                                            <option value="overdue">Po termínu</option>
+                                            <option value="damaged">Poškozené</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="locationFilter">Umístění</label>
+                                        <input type="text" class="form-control" id="locationFilter" placeholder="např. A1, U2">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="authorFilter">Autor</label>
+                                        <input type="text" class="form-control" id="authorFilter" placeholder="Jméno autora">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sloupce k exportu -->
+                            <div class="form-group">
+                                <label>Sloupce k exportu</label>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_title" checked>
+                                            <label class="form-check-label" for="col_title">Název</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_author" checked>
+                                            <label class="form-check-label" for="col_author">Autor</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_isbn" checked>
+                                            <label class="form-check-label" for="col_isbn">ISBN</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_genre" checked>
+                                            <label class="form-check-label" for="col_genre">Žánr</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_year">
+                                            <label class="form-check-label" for="col_year">Rok vydání</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_publisher">
+                                            <label class="form-check-label" for="col_publisher">Vydavatel</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_location" checked>
+                                            <label class="form-check-label" for="col_location">Umístění</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_copies">
+                                            <label class="form-check-label" for="col_copies">Počet kopií</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_available">
+                                            <label class="form-check-label" for="col_available">Dostupnost</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_condition">
+                                            <label class="form-check-label" for="col_condition">Stav</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_description">
+                                            <label class="form-check-label" for="col_description">Popis</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="col_notes">
+                                            <label class="form-check-label" for="col_notes">Poznámky</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-download mr-1"></i>
+                                    Exportovat data
+                                </button>
+                                <button type="button" class="btn btn-info btn-lg ml-2">
+                                    <i class="fas fa-eye mr-1"></i>
+                                    Náhled dat
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-lg ml-2">
+                                    <i class="fas fa-save mr-1"></i>
+                                    Uložit šablonu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Šablony exportů -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-save mr-1"></i>
+                            Uložené šablony
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Název šablony</th>
+                                        <th>Typ</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Měsíční přehled výpůjček</td>
+                                        <td><span class="badge badge-info">Výpůjčky</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Přehled žáků podle tříd</td>
+                                        <td><span class="badge badge-primary">Žáci</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Inventura knihovny</td>
+                                        <td><span class="badge badge-success">Knihy</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success">
+                                                    <i class="fas fa-play"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Nápověda k exportu
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>Tipy pro export:</h5>
+                        <ul>
+                            <li><strong>Excel (.xlsx):</strong> Nejlepší pro další zpracování dat</li>
+                            <li><strong>CSV:</strong> Univerzální formát pro import do jiných systémů</li>
+                            <li><strong>PDF:</strong> Pro tisk a archivaci</li>
+                        </ul>
+                        
+                        <h5>Časové období:</h5>
+                        <p>Ponechte prázdné pro export všech záznamů bez omezení data.</p>
+                        
+                        <h5>Šablony:</h5>
+                        <p>Uložte často používané kombinace filtrů jako šablony pro rychlejší použití.</p>
+                        
+                        <h5>Limity:</h5>
+                        <ul>
+                            <li>Excel: max 1 000 000 řádků</li>
+                            <li>CSV: bez limitu</li>
+                            <li>PDF: max 10 000 řádků</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

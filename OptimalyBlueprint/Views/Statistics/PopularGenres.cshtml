@@ -1,0 +1,428 @@
+@{
+    ViewData["Title"] = "Oblíbené žánry";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Analýza oblíbených žánrů</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Reporty a nástroje</li>
+                    <li class="breadcrumb-item active">Oblíbené žánry</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Celkové statistiky žánrů -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-primary">
+                    <div class="inner">
+                        <h3>15</h3>
+                        <p>Aktivních žánrů</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>Učebnice</h3>
+                        <p>Nejčastější žánr</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>1,245</h3>
+                        <p>Výpůjček tento měsíc</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>4.2</h3>
+                        <p>Průměrné hodnocení</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grafy oblíbenosti -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Rozložení výpůjček podle žánrů
+                        </h3>
+                        <div class="card-tools">
+                            <select class="form-control-sm" id="periodFilter">
+                                <option value="month">Tento měsíc</option>
+                                <option value="quarter">Toto čtvrtletí</option>
+                                <option value="year">Tento rok</option>
+                                <option value="all">Celkově</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="genresChart" style="height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-trophy mr-1"></i>
+                            Top 5 žánrů
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-warning">🥇</span>
+                                            <strong>Učebnice</strong>
+                                        </td>
+                                        <td><span class="badge badge-success">892 výpůjček</span></td>
+                                        <td>35%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-secondary">🥈</span>
+                                            <strong>Próza</strong>
+                                        </td>
+                                        <td><span class="badge badge-info">456 výpůjček</span></td>
+                                        <td>18%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-warning">🥉</span>
+                                            <strong>Fantasy</strong>
+                                        </td>
+                                        <td><span class="badge badge-warning">234 výpůjček</span></td>
+                                        <td>9%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-light">4.</span>
+                                            <strong>Detektivka</strong>
+                                        </td>
+                                        <td><span class="badge badge-primary">178 výpůjček</span></td>
+                                        <td>7%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-light">5.</span>
+                                            <strong>Slovníky</strong>
+                                        </td>
+                                        <td><span class="badge badge-secondary">156 výpůjček</span></td>
+                                        <td>6%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trend oblíbenosti -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line mr-1"></i>
+                            Trend oblíbenosti žánrů (posledních 12 měsíců)
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="trendChart" style="height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detailní analýza podle tříd -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-graduation-cap mr-1"></i>
+                            Oblíbenost podle věkových skupin
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Třída</th>
+                                        <th>Nejoblíbenější žánr</th>
+                                        <th>Výpůjček</th>
+                                        <th>Podíl</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge badge-primary">6.A + 6.B</span></td>
+                                        <td><strong>Pohádky a bajky</strong></td>
+                                        <td>89</td>
+                                        <td>42%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-primary">7.A + 7.B</span></td>
+                                        <td><strong>Fantasy</strong></td>
+                                        <td>156</td>
+                                        <td>38%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-primary">8.A + 8.B</span></td>
+                                        <td><strong>Učebnice</strong></td>
+                                        <td>234</td>
+                                        <td>45%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-primary">9.A + 9.B</span></td>
+                                        <td><strong>Učebnice</strong></td>
+                                        <td>445</td>
+                                        <td>58%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-success">Učitelé</span></td>
+                                        <td><strong>Odborná literatura</strong></td>
+                                        <td>67</td>
+                                        <td>31%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Sezónní trendy
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Období</th>
+                                        <th>Dominantní žánr</th>
+                                        <th>Změna</th>
+                                        <th>Poznámka</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Září - Listopad</strong></td>
+                                        <td>Učebnice</td>
+                                        <td><span class="badge badge-success">+65%</span></td>
+                                        <td><small>Začátek školního roku</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Prosinec - Leden</strong></td>
+                                        <td>Pohádky</td>
+                                        <td><span class="badge badge-info">+25%</span></td>
+                                        <td><small>Vánoční období</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Březen - Květen</strong></td>
+                                        <td>Učebnice</td>
+                                        <td><span class="badge badge-warning">+45%</span></td>
+                                        <td><small>Příprava na zkoušky</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Červen - Srpen</strong></td>
+                                        <td>Beletrie</td>
+                                        <td><span class="badge badge-success">+35%</span></td>
+                                        <td><small>Prázdniny</small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doporučení a akce -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-lightbulb mr-1"></i>
+                            Doporučení pro rozvoj knihovny
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h5><i class="icon fas fa-info"></i> Analýza ukazuje:</h5>
+                            <ul class="mb-0">
+                                <li><strong>Učebnice</strong> dominují (35% všech výpůjček) - zvážit rozšíření fondu</li>
+                                <li><strong>Fantasy literatura</strong> roste u mladších žáků - doporučuji nákup nových titulů</li>
+                                <li><strong>Detektivky</strong> jsou populární u starších žáků - možnost tématického týdne</li>
+                                <li><strong>Poezie</strong> má nízkou oblíbenost (3%) - zvážit motivační program</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="alert alert-success">
+                            <h5><i class="icon fas fa-check"></i> Doporučené akce:</h5>
+                            <ul class="mb-0">
+                                <li>Nákup 15 nových fantasy knih pro mladší žáky</li>
+                                <li>Organizace "Týdne detektivek" s kvízy a soutěžemi</li>
+                                <li>Workshop čtení poezie s místním básníkem</li>
+                                <li>Rozšíření sekce učebnic o elektronické zdroje</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-download mr-1"></i>
+                            Export analýzy
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-file-excel mr-1"></i>
+                            Export do Excel
+                        </button>
+                        <button class="btn btn-danger btn-block mb-2">
+                            <i class="fas fa-file-pdf mr-1"></i>
+                            Export do PDF
+                        </button>
+                        <button class="btn btn-info btn-block mb-2">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Detailní report
+                        </button>
+                        <button class="btn btn-warning btn-block">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Poslat vedení
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+@section Scripts {
+<script src="~/lib/adminlte/plugins/chart.js/Chart.min.js"></script>
+<script>
+    // Pie chart pro žánry
+    var ctx1 = document.getElementById('genresChart').getContext('2d');
+    var genresChart = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+            labels: ['Učebnice', 'Próza', 'Fantasy', 'Detektivka', 'Slovníky', 'Poezie', 'Ostatní'],
+            datasets: [{
+                data: [892, 456, 234, 178, 156, 89, 245],
+                backgroundColor: [
+                    '#28a745',
+                    '#17a2b8', 
+                    '#ffc107',
+                    '#dc3545',
+                    '#6c757d',
+                    '#6f42c1',
+                    '#fd7e14'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
+        }
+    });
+    
+    // Trend chart
+    var ctx2 = document.getElementById('trendChart').getContext('2d');
+    var trendChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['Srp 24', 'Zář 24', 'Říj 24', 'Lis 24', 'Pro 24', 'Led 25', 'Úno 25', 'Bře 25', 'Dub 25', 'Kvě 25', 'Čer 25', 'Črc 25'],
+            datasets: [{
+                label: 'Učebnice',
+                data: [45, 89, 76, 92, 65, 78, 85, 95, 88, 92, 45, 72],
+                borderColor: '#28a745',
+                fill: false
+            }, {
+                label: 'Fantasy',
+                data: [12, 15, 18, 22, 28, 25, 30, 35, 32, 28, 45, 38],
+                borderColor: '#ffc107',
+                fill: false
+            }, {
+                label: 'Próza',
+                data: [25, 28, 32, 35, 42, 38, 40, 45, 42, 38, 52, 48],
+                borderColor: '#17a2b8',
+                fill: false
+            }, {
+                label: 'Detektivka',
+                data: [8, 12, 15, 18, 20, 16, 18, 22, 25, 28, 32, 25],
+                borderColor: '#dc3545',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Počet výpůjček'
+                    }
+                }
+            }
+        }
+    });
+</script>
+}

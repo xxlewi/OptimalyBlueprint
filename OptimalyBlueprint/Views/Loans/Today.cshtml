@@ -1,0 +1,416 @@
+@{
+    ViewData["Title"] = "Dnešní výpůjčky";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Dnešní výpůjčky</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Dnešní výpůjčky</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Dnešní statistiky -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>23</h3>
+                        <p>Nových výpůjček</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>15</h3>
+                        <p>Vrácených knih</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>5</h3>
+                        <p>Prodloužených</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>3</h3>
+                        <p>Po termínu dnes</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dnešní nové výpůjčky -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-plus mr-1"></i>
+                            Dnes vypůjčené knihy
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-success">23 výpůjček</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Čas</th>
+                                        <th>Uživatel</th>
+                                        <th>Typ</th>
+                                        <th>Kniha</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Knihovník</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>14:45</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Jana Nováková</strong><br>
+                                                    <small class="text-muted">7.A</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Malý princ</strong><br>
+                                            <small class="text-muted">Antoine de Saint-Exupéry</small>
+                                        </td>
+                                        <td>12.8.2025</td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>13:20</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Pavel Procházka</strong><br>
+                                                    <small class="text-muted">9.A</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Babička</strong><br>
+                                            <small class="text-muted">Božena Němcová</small>
+                                        </td>
+                                        <td>12.8.2025</td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>11:15</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user3-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Marie Dvořáková</strong><br>
+                                                    <small class="text-muted">Učitelka</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Učitel</span></td>
+                                        <td>
+                                            <strong>Metodika výuky literatury</strong><br>
+                                            <small class="text-muted">J. Svoboda</small>
+                                        </td>
+                                        <td>26.8.2025</td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:30</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user4-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Tomáš Svoboda</strong><br>
+                                                    <small class="text-muted">8.B</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Matematika - příprava k maturitě</strong><br>
+                                            <small class="text-muted">kolektiv autorů</small>
+                                        </td>
+                                        <td>12.8.2025</td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dnešní vrácené knihy -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-undo mr-1"></i>
+                            Dnes vrácené knihy
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-info">15 vrácených</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Čas</th>
+                                        <th>Uživatel</th>
+                                        <th>Kniha</th>
+                                        <th>Termín byl</th>
+                                        <th>Stav knihy</th>
+                                        <th>Zpoždění</th>
+                                        <th>Knihovník</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+                                        <td>15:10</td>
+                                        <td>
+                                            <strong>Tomáš Svoboda</strong><br>
+                                            <small class="text-muted">8.B</small>
+                                        </td>
+                                        <td>
+                                            <strong>Robinson Crusoe</strong><br>
+                                            <small class="text-muted">Daniel Defoe</small>
+                                        </td>
+                                        <td>30.7.2025</td>
+                                        <td><span class="badge badge-success">Dobrý stav</span></td>
+                                        <td><span class="badge badge-success">Včas</span></td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>14:20</td>
+                                        <td>
+                                            <strong>Marie Dvořáková</strong><br>
+                                            <small class="text-muted">6.A</small>
+                                        </td>
+                                        <td>
+                                            <strong>Děti z Bullerbynu</strong><br>
+                                            <small class="text-muted">Astrid Lindgren</small>
+                                        </td>
+                                        <td>28.7.2025</td>
+                                        <td><span class="badge badge-warning">Drobné poškození</span></td>
+                                        <td><span class="badge badge-warning">1 den</span></td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>13:45</td>
+                                        <td>
+                                            <strong>Anna Svobodová</strong><br>
+                                            <small class="text-muted">8.B</small>
+                                        </td>
+                                        <td>
+                                            <strong>Fyzika pro 8. třídu</strong><br>
+                                            <small class="text-muted">P. Novák</small>
+                                        </td>
+                                        <td>29.7.2025</td>
+                                        <td><span class="badge badge-success">Dobrý stav</span></td>
+                                        <td><span class="badge badge-success">Včas</span></td>
+                                        <td>Tomáš Novák</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" title="Detail">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rychlé akce a přehled -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clock mr-1"></i>
+                            Knihy s termínem dnes
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Jan Procházka (9.A)</strong><br>
+                                            <small class="text-muted">Matematika pro gymnázia</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-warning">Dnes</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-envelope"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Petra Nováková (7.A)</strong><br>
+                                            <small class="text-muted">Chemie pro ZŠ</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-warning">Dnes</span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-envelope"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line mr-1"></i>
+                            Trend výpůjček
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-muted">
+                                <strong>Včera:</strong>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="text-success">18 výpůjček</span>
+                                <span class="text-info">12 vrácených</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-primary">
+                                <strong>Dnes:</strong>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="text-success">23 výpůjček</span>
+                                <span class="text-info">15 vrácených</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-muted">
+                                <strong>Průměr týdne:</strong>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="text-success">19 výpůjček</span>
+                                <span class="text-info">16 vrácených</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

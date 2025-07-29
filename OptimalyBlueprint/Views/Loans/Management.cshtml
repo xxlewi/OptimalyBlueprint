@@ -1,0 +1,453 @@
+@{
+    ViewData["Title"] = "Správa výpůjček";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Správa výpůjček</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Správa výpůjček</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Přehled stavu výpůjček -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>87</h3>
+                        <p>Aktivní výpůjčky</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>23</h3>
+                        <p>Dnes vypůjčeno</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>15</h3>
+                        <p>Dnes vráceno</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>12</h3>
+                        <p>Po termínu</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filtry a vyhledávání -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter mr-1"></i>
+                            Filtrování výpůjček
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Loans" asp-action="New" class="btn btn-success">
+                                <i class="fas fa-plus mr-1"></i>
+                                Nová výpůjčka
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="searchUser">Žák/Učitel</label>
+                                    <input type="text" class="form-control" id="searchUser" placeholder="Jméno uživatele">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="searchBook">Kniha</label>
+                                    <input type="text" class="form-control" id="searchBook" placeholder="Název knihy">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="statusFilter">Stav</label>
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Všechny</option>
+                                        <option value="active">Aktivní</option>
+                                        <option value="overdue">Po termínu</option>
+                                        <option value="returned">Vrácené</option>
+                                        <option value="renewed">Prodloužené</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="classFilter">Třída</label>
+                                    <select class="form-control" id="classFilter">
+                                        <option value="">Všechny</option>
+                                        <option value="6A">6.A</option>
+                                        <option value="7A">7.A</option>
+                                        <option value="8A">8.A</option>
+                                        <option value="9A">9.A</option>
+                                        <option value="teachers">Učitelé</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="btn btn-primary btn-block">
+                                        <i class="fas fa-search mr-1"></i>
+                                        Hledat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seznam všech výpůjček -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Všechny výpůjčky
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export do Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Uživatel</th>
+                                        <th>Typ</th>
+                                        <th>Kniha</th>
+                                        <th>Datum výpůjčky</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Stav</th>
+                                        <th>Poznámky</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#2025001</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Anna Svobodová</strong><br>
+                                                    <small class="text-muted">8.B</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Chemie pro 8. třídu</strong><br>
+                                            <small class="text-muted">M. Štěpánek</small>
+                                        </td>
+                                        <td>12.7.2025</td>
+                                        <td>26.7.2025</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Vrátit">
+                                                    <i class="fas fa-undo"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Prodloužit">
+                                                    <i class="fas fa-calendar-plus"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#2025002</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Tomáš Novák</strong><br>
+                                                    <small class="text-muted">7.A</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Robinson Crusoe</strong><br>
+                                            <small class="text-muted">Daniel Defoe</small>
+                                        </td>
+                                        <td>10.7.2025</td>
+                                        <td>24.7.2025</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>-</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Vrátit">
+                                                    <i class="fas fa-undo"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Prodloužit">
+                                                    <i class="fas fa-calendar-plus"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>#2025003</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user3-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Petr Novák</strong><br>
+                                                    <small class="text-muted">7.A</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Dějiny světa</strong><br>
+                                            <small class="text-muted">František Palacký</small>
+                                        </td>
+                                        <td>8.7.2025</td>
+                                        <td>22.7.2025</td>
+                                        <td><span class="badge badge-danger">5 dní po termínu</span></td>
+                                        <td>
+                                            <small class="text-danger">
+                                                <i class="fas fa-exclamation-triangle mr-1"></i>
+                                                Poslána upomínka
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-danger" title="Vrátit po termínu">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Poslat upomínku">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Zavolat">
+                                                    <i class="fas fa-phone"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#2025004</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user4-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Marie Dvořáková</strong><br>
+                                                    <small class="text-muted">Učitelka</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">Učitel</span></td>
+                                        <td>
+                                            <strong>Metodika výuky literatury</strong><br>
+                                            <small class="text-muted">J. Svoboda</small>
+                                        </td>
+                                        <td>5.7.2025</td>
+                                        <td>2.8.2025</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <small class="text-info">
+                                                <i class="fas fa-info-circle mr-1"></i>
+                                                Prodlouženo 1×
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-success" title="Vrátit">
+                                                    <i class="fas fa-undo"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-info" title="Prodloužit">
+                                                    <i class="fas fa-calendar-plus"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning" title="Editovat">
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td>#2025005</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user5-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Pavel Procházka</strong><br>
+                                                    <small class="text-muted">9.A</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">Žák</span></td>
+                                        <td>
+                                            <strong>Babička</strong><br>
+                                            <small class="text-muted">Božena Němcová</small>
+                                        </td>
+                                        <td>15.7.2025</td>
+                                        <td>29.7.2025</td>
+                                        <td><span class="badge badge-info">Vráceno dnes</span></td>
+                                        <td>
+                                            <small class="text-success">
+                                                <i class="fas fa-check mr-1"></i>
+                                                Vráceno včas
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info" title="Detail">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Rychlé akce -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt mr-1"></i>
+                            Rychlé akce
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-warning btn-block mb-2">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Poslat všechny upomínky
+                        </button>
+                        <button class="btn btn-info btn-block mb-2">
+                            <i class="fas fa-calendar-plus mr-1"></i>
+                            Hromadné prodloužení
+                        </button>
+                        <button class="btn btn-success btn-block">
+                            <i class="fas fa-file-excel mr-1"></i>
+                            Export aktivních výpůjček
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Statistiky za dnes
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-success text-xl">
+                                <i class="fas fa-arrow-right"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-success">Nové výpůjčky</span>
+                                </span>
+                                <span class="text-muted">23 knih</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-info text-xl">
+                                <i class="fas fa-arrow-left"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-info">Vrácené knihy</span>
+                                </span>
+                                <span class="text-muted">15 knih</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-warning text-xl">
+                                <i class="fas fa-envelope"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-warning">Odeslané upomínky</span>
+                                </span>
+                                <span class="text-muted">8 upomínek</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

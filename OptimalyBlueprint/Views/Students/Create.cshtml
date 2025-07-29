@@ -1,0 +1,308 @@
+@{
+    ViewData["Title"] = "Přidat žáka";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Přidat nového žáka</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Uživatelé</li>
+                    <li class="breadcrumb-item"><a asp-controller="Students" asp-action="Index">Žáci</a></li>
+                    <li class="breadcrumb-item active">Přidat žáka</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <form method="post">
+            <div class="row">
+                <!-- Základní informace -->
+                <div class="col-md-8">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user mr-1"></i>
+                                Základní informace o žákovi
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="firstName">Jméno *</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="lastName">Příjmení *</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="studentClass">Třída *</label>
+                                        <select class="form-control" id="studentClass" name="studentClass" required>
+                                            <option value="">Vyberte třídu</option>
+                                            <option value="6A">6.A</option>
+                                            <option value="6B">6.B</option>
+                                            <option value="7A">7.A</option>
+                                            <option value="7B">7.B</option>
+                                            <option value="8A">8.A</option>
+                                            <option value="8B">8.B</option>
+                                            <option value="9A">9.A</option>
+                                            <option value="9B">9.B</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="birthDate">Datum narození</label>
+                                        <input type="date" class="form-control" id="birthDate" name="birthDate">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="studentId">Číslo žáka</label>
+                                        <input type="text" class="form-control" id="studentId" name="studentId" placeholder="např. 20250123">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email žáka</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="jmeno.prijmeni@skolajablunkov.cz">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Telefon (volitelné)</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+420 xxx xxx xxx">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Adresa</label>
+                                <textarea class="form-control" id="address" name="address" rows="2" placeholder="Ulice, číslo popisné, PSČ Město"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Informace o rodičích -->
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-users mr-1"></i>
+                                Kontakt na rodiče/zákonné zástupce
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Rodič/Zákonný zástupce 1</h5>
+                                    <div class="form-group">
+                                        <label for="parent1Name">Jméno a příjmení</label>
+                                        <input type="text" class="form-control" id="parent1Name" name="parent1Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent1Email">Email</label>
+                                        <input type="email" class="form-control" id="parent1Email" name="parent1Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent1Phone">Telefon *</label>
+                                        <input type="tel" class="form-control" id="parent1Phone" name="parent1Phone" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Rodič/Zákonný zástupce 2</h5>
+                                    <div class="form-group">
+                                        <label for="parent2Name">Jméno a příjmení</label>
+                                        <input type="text" class="form-control" id="parent2Name" name="parent2Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent2Email">Email</label>
+                                        <input type="email" class="form-control" id="parent2Email" name="parent2Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent2Phone">Telefon</label>
+                                        <input type="tel" class="form-control" id="parent2Phone" name="parent2Phone">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nastavení účtu -->
+                <div class="col-md-4">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cog mr-1"></i>
+                                Nastavení knihovního účtu
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="maxBooks">Maximální počet knih</label>
+                                <input type="number" class="form-control" id="maxBooks" name="maxBooks" value="3" min="1" max="10">
+                                <small class="form-text text-muted">Výchozí limit je 3 knihy</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="responsibility">Úroveň zodpovědnosti</label>
+                                <select class="form-control" id="responsibility">
+                                    <option value="3" selected>⭐⭐⭐ Průměrná (výchozí)</option>
+                                    <option value="4">⭐⭐⭐⭐ Dobrá</option>
+                                    <option value="5">⭐⭐⭐⭐⭐ Výborná</option>
+                                </select>
+                                <small class="form-text text-muted">Bude se upravovat podle chování</small>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="isActive" name="isActive" checked>
+                                <label class="form-check-label" for="isActive">
+                                    Aktivní účet
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="canReserve" name="canReserve" checked>
+                                <label class="form-check-label" for="canReserve">
+                                    Může rezervovat knihy
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="emailNotifications" name="emailNotifications" checked>
+                                <label class="form-check-label" for="emailNotifications">
+                                    Emailové upomínky
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RFID/Čipová karta -->
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-id-card mr-1"></i>
+                                RFID karta
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="cardNumber">Číslo karty</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Naskenujte nebo zadejte číslo karty">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-warning" type="button">
+                                            <i class="fas fa-qrcode"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Karta se může přidat i později
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Foto žáka -->
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-camera mr-1"></i>
+                                Fotografie žáka
+                            </h3>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle" style="width: 100px; height: 100px;" alt="Náhled">
+                            </div>
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="photo" name="photo" accept="image/*">
+                            </div>
+                            <small class="form-text text-muted">
+                                Doporučená velikost: 160x160px
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Poznámky -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-sticky-note mr-1"></i>
+                                Poznámky
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="notes">Interní poznámky</label>
+                                <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Poznámky pro knihovníky (není viditelné pro žáka)..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tlačítka -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-save mr-1"></i>
+                                Uložit žáka
+                            </button>
+                            <button type="button" class="btn btn-success btn-lg ml-2" onclick="saveAndAddAnother()">
+                                <i class="fas fa-plus mr-1"></i>
+                                Uložit a přidat dalšího
+                            </button>
+                            <a asp-controller="Students" asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                                <i class="fas fa-times mr-1"></i>
+                                Zrušit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</section>
+
+<script>
+function saveAndAddAnother() {
+    const form = document.querySelector('form');
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'saveAndAddAnother';
+    input.value = 'true';
+    form.appendChild(input);
+    form.submit();
+}
+</script>
