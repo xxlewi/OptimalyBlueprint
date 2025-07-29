@@ -1,0 +1,47 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/bin": true,
+            "**/obj": true,
+            "**/.vs": true
+        },
+        "dotnet.defaultSolution": "OptimalyBlueprint/OptimalyBlueprint.csproj"
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-dotnettools.csharp",
+            "ms-dotnettools.vscodeintellicode-csharp",
+            "formulahendry.auto-rename-tag",
+            "bradlc.vscode-tailwindcss"
+        ]
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "🚀 Launch OptimalyBlueprint",
+                "type": "coreclr",
+                "request": "launch",
+                "preLaunchTask": "kill-and-build",
+                "postDebugTask": "open-browser",
+                "program": "${workspaceFolder}/OptimalyBlueprint/bin/Debug/net9.0/OptimalyBlueprint.dll",
+                "args": ["--urls", "http://localhost:5000"],
+                "cwd": "${workspaceFolder}/OptimalyBlueprint",
+                "stopAtEntry": false,
+                "serverReadyAction": {
+                    "action": "openExternally",
+                    "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+                    "uriFormat": "%s"
+                },
+                "env": {
+                    "ASPNETCORE_ENVIRONMENT": "Development"
+                }
+            }
+        ]
+    }
+}
