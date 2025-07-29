@@ -1,0 +1,268 @@
+@{
+    ViewData["Title"] = "Vrácení knihy";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Vrácení knihy</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Vrácení knihy</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Vyhledání výpůjčky -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-search mr-1"></i>
+                            Vyhledat výpůjčku
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="loanSearch">Vyhledat podle žáka, knihy nebo čipové karty</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" id="loanSearch" placeholder="Zadejte jméno žáka, název knihy nebo naskenujte čipovou kartu...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-info btn-lg" type="button">
+                                        <i class="fas fa-search"></i> Hledat
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="form-text text-muted">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Podporuje vyhledávání podle jména žáka, názvu knihy nebo naskenování čipové karty
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-qrcode mr-1"></i>
+                            Rychlé možnosti
+                        </h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <button class="btn btn-secondary btn-block mb-2">
+                            <i class="fas fa-id-card mr-1"></i>
+                            Skenovat čipovou kartu
+                        </button>
+                        <button class="btn btn-secondary btn-block">
+                            <i class="fas fa-qrcode mr-1"></i>
+                            Skenovat QR kód
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Aktivní výpůjčky k vrácení -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Aktivní výpůjčky připravené k vrácení
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-info">87 aktivních</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Kniha</th>
+                                        <th>Autor</th>
+                                        <th>Půjčeno</th>
+                                        <th>Termín</th>
+                                        <th>Stav</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Anna Svobodová</strong></td>
+                                        <td><span class="badge badge-primary">8.B</span></td>
+                                        <td>Chemie pro 8. třídu</td>
+                                        <td>M. Štěpánek</td>
+                                        <td>12.7.2025</td>
+                                        <td>26.7.2025</td>
+                                        <td><span class="badge badge-success">V termínu</span></td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check mr-1"></i>
+                                                Vrátit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tomáš Novák</strong></td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Robinson Crusoe</td>
+                                        <td>Daniel Defoe</td>
+                                        <td>10.7.2025</td>
+                                        <td>24.7.2025</td>
+                                        <td><span class="badge badge-success">V termínu</span></td>
+                                        <td>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check mr-1"></i>
+                                                Vrátit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><strong>Petr Novák</strong></td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Dějiny světa</td>
+                                        <td>František Palacký</td>
+                                        <td>8.7.2025</td>
+                                        <td>22.7.2025</td>
+                                        <td><span class="badge badge-danger">5 dní po termínu</span></td>
+                                        <td>
+                                            <button class="btn btn-warning btn-sm">
+                                                <i class="fas fa-exclamation-triangle mr-1"></i>
+                                                Vrátit po termínu
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulář vrácení -->
+        <div class="row" id="returnForm" style="display: none;">
+            <div class="col-12">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-undo mr-1"></i>
+                            Formulář vrácení knihy
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Žák</label>
+                                        <input type="text" class="form-control" value="Anna Svobodová (8.B)" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kniha</label>
+                                        <input type="text" class="form-control" value="Chemie pro 8. třídu - M. Štěpánek" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="returnDate">Datum vrácení</label>
+                                        <input type="date" class="form-control" id="returnDate" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="condition">Fyzický stav knihy</label>
+                                        <select class="form-control" id="condition">
+                                            <option value="good">Dobrý stav</option>
+                                            <option value="minor">Drobné poškození</option>
+                                            <option value="damaged">Poškozené</option>
+                                            <option value="lost">Ztracené</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="returnNotes">Poznámky k vrácení</label>
+                                <textarea class="form-control" id="returnNotes" rows="3" placeholder="Poznámky o stavu knihy, poškození, atd..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-check mr-1"></i>
+                                    Potvrdit vrácení
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-lg ml-2">
+                                    <i class="fas fa-times mr-1"></i>
+                                    Zrušit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dnešní vrácené knihy -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Dnes vrácené knihy
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-success">15 vrácených</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Čas</th>
+                                        <th>Žák</th>
+                                        <th>Kniha</th>
+                                        <th>Stav při vrácení</th>
+                                        <th>Poznámky</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>8:45</td>
+                                        <td>Tomáš Svoboda (8.B)</td>
+                                        <td>Robinson Crusoe</td>
+                                        <td><span class="badge badge-success">Dobrý stav</span></td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7:30</td>
+                                        <td>Marie Dvořáková (6.A)</td>
+                                        <td>Děti z Bullerbynu</td>
+                                        <td><span class="badge badge-warning">Drobné poškození</span></td>
+                                        <td>Ohnuté rohy stránek</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

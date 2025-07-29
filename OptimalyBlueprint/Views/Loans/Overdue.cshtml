@@ -1,0 +1,311 @@
+@{
+    ViewData["Title"] = "Knihy po termínu";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Knihy po termínu vrácení</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Po termínu</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Statistiky -->
+        <div class="row">
+            <div class="col-lg-4 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>12</h3>
+                        <p>Knihy po termínu</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>5</h3>
+                        <p>Upomínek k odeslání</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>3</h3>
+                        <p>Více než 7 dní</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Kritické - více než 7 dní -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-circle mr-1"></i>
+                            Kritické - více než 7 dní po termínu
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-danger">Vyžaduje okamžitou akci</span>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Kniha</th>
+                                        <th>Autor</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Dní po termínu</th>
+                                        <th>Zodpovědnost</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Jan Procházka</strong></td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>Matematika - příprava k maturitě</td>
+                                        <td>kolektiv autorů</td>
+                                        <td>18.7.2025</td>
+                                        <td><span class="badge badge-danger">9 dní</span></td>
+                                        <td><span class="badge badge-warning">⭐⭐⭐</span></td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-phone mr-1"></i>
+                                                Zavolat rodičům
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Všechny knihy po termínu -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Všechny knihy po termínu vrácení
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-warning btn-sm">
+                                <i class="fas fa-envelope mr-1"></i>
+                                Poslat všechny upomínky
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="selectAll">
+                                                <label for="selectAll"></label>
+                                            </div>
+                                        </th>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Kniha</th>
+                                        <th>Autor</th>
+                                        <th>Půjčeno</th>
+                                        <th>Termín</th>
+                                        <th>Dní po termínu</th>
+                                        <th>Zodpovědnost žáka</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-danger">
+                                        <td>
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="check1">
+                                                <label for="check1"></label>
+                                            </div>
+                                        </td>
+                                        <td><strong>Jan Procházka</strong></td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>Matematika - příprava k maturitě</td>
+                                        <td>kolektiv autorů</td>
+                                        <td>4.7.2025</td>
+                                        <td>18.7.2025</td>
+                                        <td><span class="badge badge-danger">9 dní</span></td>
+                                        <td>
+                                            <div class="text-warning">
+                                                ⭐⭐⭐ (3/5)
+                                                <small class="d-block text-muted">Průměrná</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-phone"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="check2">
+                                                <label for="check2"></label>
+                                            </div>
+                                        </td>
+                                        <td><strong>Petr Novák</strong></td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Dějiny světa</td>
+                                        <td>František Palacký</td>
+                                        <td>8.7.2025</td>
+                                        <td>22.7.2025</td>
+                                        <td><span class="badge badge-danger">5 dní</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐⭐ (5/5)
+                                                <small class="d-block text-muted">Výborná</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info">
+                                                    <i class="fas fa-phone"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="check3">
+                                                <label for="check3"></label>
+                                            </div>
+                                        </td>
+                                        <td><strong>Anna Svobodová</strong></td>
+                                        <td><span class="badge badge-primary">8.B</span></td>
+                                        <td>Chemie pro 8. třídu</td>
+                                        <td>M. Štěpánek</td>
+                                        <td>12.7.2025</td>
+                                        <td>24.7.2025</td>
+                                        <td><span class="badge badge-danger">3 dny</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐ (4/5)
+                                                <small class="d-block text-muted">Dobrá</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-sm btn-info">
+                                                    <i class="fas fa-phone"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-envelope"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Poslat upomínky vybraným (0)
+                        </button>
+                        <button class="btn btn-danger ml-2">
+                            <i class="fas fa-phone mr-1"></i>
+                            Zavolat rodičům vybraných (0)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- História upomínek -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Historie upomínek
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Datum</th>
+                                        <th>Žák</th>
+                                        <th>Kniha</th>
+                                        <th>Typ upomínky</th>
+                                        <th>Stav</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>26.7.2025 14:30</td>
+                                        <td>Petr Novák (7.A)</td>
+                                        <td>Dějiny světa</td>
+                                        <td><span class="badge badge-info">Email</span></td>
+                                        <td><span class="badge badge-success">Odesláno</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>25.7.2025 10:15</td>
+                                        <td>Anna Svobodová (8.B)</td>
+                                        <td>Chemie pro 8. třídu</td>
+                                        <td><span class="badge badge-warning">SMS</span></td>
+                                        <td><span class="badge badge-success">Odesláno</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

@@ -1,0 +1,206 @@
+@{
+    ViewData["Title"] = "Nová výpůjčka";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Nová výpůjčka</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Nová výpůjčka</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Rychlé vyhledání knihy -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-search mr-1"></i>
+                            Vyhledat knihu
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="bookSearch">Vyhledat podle názvu, autora nebo ISBN</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="bookSearch" placeholder="Zadejte název knihy, autora nebo ISBN...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search"></i> Hledat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Výsledky vyhledávání -->
+                        <div id="searchResults" class="mt-3">
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Zadejte text pro vyhledání knih v katalogu
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vyhledání žáka -->
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            Vyhledat žáka
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="studentSearch">Vyhledat podle jména nebo třídy</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="studentSearch" placeholder="Zadejte jméno žáka nebo třídu...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="button">
+                                        <i class="fas fa-search"></i> Hledat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Výsledky vyhledávání žáků -->
+                        <div id="studentResults" class="mt-3">
+                            <div class="alert alert-success">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Zadejte text pro vyhledání žáka
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Formulář výpůjčky -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-plus mr-1"></i>
+                            Vytvořit výpůjčku
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="selectedBook">Vybraná kniha</label>
+                                        <input type="text" class="form-control" id="selectedBook" placeholder="Vyberte knihu pomocí vyhledávání" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="selectedStudent">Vybraný žák</label>
+                                        <input type="text" class="form-control" id="selectedStudent" placeholder="Vyberte žáka pomocí vyhledávání" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="loanDate">Datum výpůjčky</label>
+                                        <input type="date" class="form-control" id="loanDate" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dueDate">Termín vrácení</label>
+                                        <input type="date" class="form-control" id="dueDate" value="@DateTime.Now.AddDays(14).ToString("yyyy-MM-dd")">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="notes">Poznámky</label>
+                                <textarea class="form-control" id="notes" rows="3" placeholder="Volitelné poznámky k výpůjčce..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-check mr-1"></i>
+                                    Vytvořit výpůjčku
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-lg ml-2">
+                                    <i class="fas fa-times mr-1"></i>
+                                    Zrušit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Poslední výpůjčky -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Dnešní výpůjčky
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Čas</th>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Kniha</th>
+                                        <th>Termín vrácení</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>9:15</td>
+                                        <td>Jana Nováková</td>
+                                        <td>7.A</td>
+                                        <td>Malý princ</td>
+                                        <td>10.8.2025</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>8:00</td>
+                                        <td>Pavel Procházka</td>
+                                        <td>9.A</td>
+                                        <td>Babička</td>
+                                        <td>10.8.2025</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

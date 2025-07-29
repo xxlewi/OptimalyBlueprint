@@ -1,0 +1,415 @@
+@{
+    ViewData["Title"] = "Přehledy a reporty";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Přehledy a reporty</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Reporty a nástroje</li>
+                    <li class="breadcrumb-item active">Přehledy</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Rychlé statistiky -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>2,847</h3>
+                        <p>Celkem knih</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>1,245</h3>
+                        <p>Výpůjček tento měsíc</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>247</h3>
+                        <p>Registrovaných uživatelů</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>92%</h3>
+                        <p>Úspěšnost vrácení</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Generování reportů -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-file-alt mr-1"></i>
+                            Generovat report
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="reportType">Typ reportu</label>
+                                <select class="form-control" id="reportType">
+                                    <option value="loans">Přehled výpůjček</option>
+                                    <option value="overdue">Knihy po termínu</option>
+                                    <option value="popular">Nejoblíbenější knihy</option>
+                                    <option value="students">Aktivita žáků</option>
+                                    <option value="teachers">Aktivita učitelů</option>
+                                    <option value="genres">Analýza žánrů</option>
+                                    <option value="inventory">Stav knihovny</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Časové období</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="date" class="form-control" id="dateFrom" value="2025-01-01">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="date" class="form-control" id="dateTo" value="2025-07-29">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="format">Formát exportu</label>
+                                <select class="form-control" id="format">
+                                    <option value="excel">Excel (.xlsx)</option>
+                                    <option value="pdf">PDF</option>
+                                    <option value="csv">CSV</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-download mr-1"></i>
+                                Vygenerovat report
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Poslední vygenerované reporty
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Název</th>
+                                        <th>Datum</th>
+                                        <th>Formát</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Výpůjčky - červenec 2025</td>
+                                        <td>28.7.2025</td>
+                                        <td><span class="badge badge-success">Excel</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Knihy po termínu</td>
+                                        <td>27.7.2025</td>
+                                        <td><span class="badge badge-danger">PDF</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aktivita žáků - 9.A</td>
+                                        <td>25.7.2025</td>
+                                        <td><span class="badge badge-info">CSV</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Grafické přehledy -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-line mr-1"></i>
+                            Trend výpůjček (posledních 12 měsíců)
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="loansChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Rozložení podle žánrů
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="genresChart" style="height: 250px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top statistiky -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-trophy mr-1"></i>
+                            Nejoblíbenější knihy
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>1. Malý princ</strong><br>
+                                            <small class="text-muted">Antoine de Saint-Exupéry</small>
+                                        </td>
+                                        <td><span class="badge badge-success">45×</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>2. Robinson Crusoe</strong><br>
+                                            <small class="text-muted">Daniel Defoe</small>
+                                        </td>
+                                        <td><span class="badge badge-success">38×</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>3. Babička</strong><br>
+                                            <small class="text-muted">Božena Němcová</small>
+                                        </td>
+                                        <td><span class="badge badge-success">32×</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>4. Matematika - maturita</strong><br>
+                                            <small class="text-muted">kolektiv autorů</small>
+                                        </td>
+                                        <td><span class="badge badge-info">28×</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-user-graduate mr-1"></i>
+                            Nejaktivnější žáci
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>1. Pavel Procházka</strong><br>
+                                            <small class="text-muted">9.A</small>
+                                        </td>
+                                        <td><span class="badge badge-success">28 knih</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>2. Tomáš Novák</strong><br>
+                                            <small class="text-muted">7.A</small>
+                                        </td>
+                                        <td><span class="badge badge-success">23 knih</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>3. Petr Novák</strong><br>
+                                            <small class="text-muted">7.A</small>
+                                        </td>
+                                        <td><span class="badge badge-success">18 knih</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>4. Anna Svobodová</strong><br>
+                                            <small class="text-muted">8.B</small>
+                                        </td>
+                                        <td><span class="badge badge-success">15 knih</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            Problematické oblasti
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr class="table-danger">
+                                        <td>
+                                            <i class="fas fa-clock text-danger mr-1"></i>
+                                            <strong>Knihy po termínu</strong>
+                                        </td>
+                                        <td><span class="badge badge-danger">12</span></td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>
+                                            <i class="fas fa-tools text-warning mr-1"></i>
+                                            <strong>Poškozené knihy</strong>
+                                        </td>
+                                        <td><span class="badge badge-warning">3</span></td>
+                                    </tr>
+                                    <tr class="table-info">
+                                        <td>
+                                            <i class="fas fa-question text-info mr-1"></i>
+                                            <strong>Chybějící při inventuře</strong>
+                                        </td>
+                                        <td><span class="badge badge-info">2</span></td>
+                                    </tr>
+                                    <tr class="table-secondary">
+                                        <td>
+                                            <i class="fas fa-ban text-secondary mr-1"></i>
+                                            <strong>Neaktivní žáci</strong>
+                                        </td>
+                                        <td><span class="badge badge-secondary">12</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+@section Scripts {
+<script src="~/lib/adminlte/plugins/chart.js/Chart.min.js"></script>
+<script>
+    // Chart pro trend výpůjček
+    var ctx1 = document.getElementById('loansChart').getContext('2d');
+    var loansChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['Srp 24', 'Zář 24', 'Říj 24', 'Lis 24', 'Pro 24', 'Led 25', 'Úno 25', 'Bře 25', 'Dub 25', 'Kvě 25', 'Čer 25', 'Črc 25'],
+            datasets: [{
+                label: 'Počet výpůjček',
+                data: [1123, 1234, 1089, 1456, 1678, 1234, 1345, 1567, 1432, 1678, 1456, 1245],
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    // Chart pro žánry
+    var ctx2 = document.getElementById('genresChart').getContext('2d');
+    var genresChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ['Učebnice', 'Próza', 'Fantasy', 'Detektivka', 'Poezie', 'Ostatní'],
+            datasets: [{
+                data: [892, 456, 234, 178, 89, 156],
+                backgroundColor: [
+                    '#17a2b8',
+                    '#28a745',
+                    '#ffc107',
+                    '#dc3545',
+                    '#6f42c1',
+                    '#6c757d'
+                ]
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+}

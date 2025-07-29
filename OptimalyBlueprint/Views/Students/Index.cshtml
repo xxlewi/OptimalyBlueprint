@@ -1,0 +1,387 @@
+@{
+    ViewData["Title"] = "Seznam žáků";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Seznam žáků</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Uživatelé</li>
+                    <li class="breadcrumb-item active">Žáci</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Filtry a vyhledávání -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter mr-1"></i>
+                            Filtrování žáků
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Students" asp-action="Create" class="btn btn-success">
+                                <i class="fas fa-user-plus mr-1"></i>
+                                Přidat žáka
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="searchName">Jméno žáka</label>
+                                    <input type="text" class="form-control" id="searchName" placeholder="Jméno a příjmení">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="classFilter">Třída</label>
+                                    <select class="form-control" id="classFilter">
+                                        <option value="">Všechny třídy</option>
+                                        <option value="6A">6.A</option>
+                                        <option value="6B">6.B</option>
+                                        <option value="7A">7.A</option>
+                                        <option value="7B">7.B</option>
+                                        <option value="8A">8.A</option>
+                                        <option value="8B">8.B</option>
+                                        <option value="9A">9.A</option>
+                                        <option value="9B">9.B</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="responsibilityFilter">Zodpovědnost</label>
+                                    <select class="form-control" id="responsibilityFilter">
+                                        <option value="">Všechny</option>
+                                        <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+                                        <option value="4">⭐⭐⭐⭐ (4)</option>
+                                        <option value="3">⭐⭐⭐ (3)</option>
+                                        <option value="2">⭐⭐ (2)</option>
+                                        <option value="1">⭐ (1)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="statusFilter">Stav</label>
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Všechny</option>
+                                        <option value="active">Aktivní</option>
+                                        <option value="inactive">Neaktivní</option>
+                                        <option value="overdue">Má po termínu</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="btn btn-primary btn-block">
+                                        <i class="fas fa-search mr-1"></i>
+                                        Hledat
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="btn btn-secondary btn-block" title="Vymazat filtry">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistiky žáků -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>247</h3>
+                        <p>Celkem žáků</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>235</h3>
+                        <p>Aktivní čtenáři</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>87</h3>
+                        <p>S aktivní výpůjčkou</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-hand-holding"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>8</h3>
+                        <p>S knihou po termínu</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seznam žáků -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-users mr-1"></i>
+                            Přehled žáků školy
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export do Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Jméno</th>
+                                        <th>Třída</th>
+                                        <th>Třídní učitel</th>
+                                        <th>Aktivní výpůjčky</th>
+                                        <th>Zodpovědnost</th>
+                                        <th>Celkem vypůjčeno</th>
+                                        <th>Stav</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Anna Svobodová</strong><br>
+                                                    <small class="text-muted">anna.svobodova@skolajablunkov.cz</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">8.B</span></td>
+                                        <td>Mgr. Jana Nováková</td>
+                                        <td><span class="badge badge-warning">1 kniha</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐ (4/5)
+                                                <small class="d-block text-muted">Dobrá</small>
+                                            </div>
+                                        </td>
+                                        <td>15 knih</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Students" asp-action="Details" asp-route-id="1" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Students" asp-action="Edit" asp-route-id="1" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Tomáš Novák</strong><br>
+                                                    <small class="text-muted">tomas.novak@skolajablunkov.cz</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Mgr. Petr Svoboda</td>
+                                        <td><span class="badge badge-warning">1 kniha</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐⭐ (5/5)
+                                                <small class="d-block text-muted">Výborná</small>
+                                            </div>
+                                        </td>
+                                        <td>23 knih</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Students" asp-action="Details" asp-route-id="2" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Students" asp-action="Edit" asp-route-id="2" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user3-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Petr Novák</strong><br>
+                                                    <small class="text-muted">petr.novak@skolajablunkov.cz</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Mgr. Petr Svoboda</td>
+                                        <td><span class="badge badge-danger">1 po termínu</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐⭐ (5/5)
+                                                <small class="d-block text-muted">Výborná</small>
+                                            </div>
+                                        </td>
+                                        <td>18 knih</td>
+                                        <td><span class="badge badge-warning">Po termínu</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Students" asp-action="Details" asp-route-id="3" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Students" asp-action="Edit" asp-route-id="3" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-danger" title="Upomínka">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user4-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Jana Nováková</strong><br>
+                                                    <small class="text-muted">jana.novakova@skolajablunkov.cz</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Mgr. Petr Svoboda</td>
+                                        <td><span class="badge badge-success">0 knih</span></td>
+                                        <td>
+                                            <div class="text-warning">
+                                                ⭐⭐⭐ (3/5)
+                                                <small class="d-block text-muted">Průměrná</small>
+                                            </div>
+                                        </td>
+                                        <td>7 knih</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Students" asp-action="Details" asp-route-id="4" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Students" asp-action="Edit" asp-route-id="4" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user5-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Pavel Procházka</strong><br>
+                                                    <small class="text-muted">pavel.prochazka@skolajablunkov.cz</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>Mgr. Marie Dvořáková</td>
+                                        <td><span class="badge badge-warning">2 knihy</span></td>
+                                        <td>
+                                            <div class="text-success">
+                                                ⭐⭐⭐⭐ (4/5)
+                                                <small class="d-block text-muted">Dobrá</small>
+                                            </div>
+                                        </td>
+                                        <td>28 knih</td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Students" asp-action="Details" asp-route-id="5" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Students" asp-action="Edit" asp-route-id="5" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

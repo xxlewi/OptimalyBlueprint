@@ -1,0 +1,520 @@
+@{
+    ViewData["Title"] = "Učitelé";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Správa učitelů</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Uživatelé</li>
+                    <li class="breadcrumb-item active">Učitelé</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Statistiky učitelů -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>24</h3>
+                        <p>Celkem učitelů</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>18</h3>
+                        <p>Aktivní čtenáři</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>12</h3>
+                        <p>S aktivní výpůjčkou</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-hand-holding"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>8</h3>
+                        <p>Třídní učitelé</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Třídní učitelé -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-users mr-1"></i>
+                            Třídní učitelé
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Teachers" asp-action="Create" class="btn btn-success">
+                                <i class="fas fa-user-plus mr-1"></i>
+                                Přidat učitele
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Učitel</th>
+                                        <th>Třída</th>
+                                        <th>Počet žáků</th>
+                                        <th>Aktivní výpůjčky žáků</th>
+                                        <th>Vlastní výpůjčky</th>
+                                        <th>Problematičtí žáci</th>
+                                        <th>Kontakt</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Marie Dvořáková</strong><br>
+                                                    <small class="text-muted">Český jazyk a literatura</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>28 žáků</td>
+                                        <td><span class="badge badge-info">15 výpůjček</span></td>
+                                        <td><span class="badge badge-success">3 knihy</span></td>
+                                        <td><span class="badge badge-danger">1 žák</span></td>
+                                        <td>
+                                            <small>
+                                                marie.dvorakova@skolajablunkov.cz<br>
+                                                +420 555 123 456
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="1" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="1" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Petr Svoboda</strong><br>
+                                                    <small class="text-muted">Matematika a Fyzika</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">8.A</span></td>
+                                        <td>26 žáků</td>
+                                        <td><span class="badge badge-info">18 výpůjček</span></td>
+                                        <td><span class="badge badge-success">1 kniha</span></td>
+                                        <td><span class="badge badge-warning">2 žáci</span></td>
+                                        <td>
+                                            <small>
+                                                petr.svoboda@skolajablunkov.cz<br>
+                                                +420 555 789 012
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="2" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="2" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user3-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Jana Nováková</strong><br>
+                                                    <small class="text-muted">Přírodopis a Chemie</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>24 žáků</td>
+                                        <td><span class="badge badge-info">12 výpůjček</span></td>
+                                        <td><span class="badge badge-success">2 knihy</span></td>
+                                        <td><span class="badge badge-success">0 žáků</span></td>
+                                        <td>
+                                            <small>
+                                                jana.novakova@skolajablunkov.cz<br>
+                                                +420 555 345 678
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="3" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="3" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user4-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Tomáš Procházka</strong><br>
+                                                    <small class="text-muted">Dějepis a Zeměpis</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-primary">6.A</span></td>
+                                        <td>22 žáků</td>
+                                        <td><span class="badge badge-info">9 výpůjček</span></td>
+                                        <td><span class="badge badge-success">0 knih</span></td>
+                                        <td><span class="badge badge-danger">3 žáci</span></td>
+                                        <td>
+                                            <small>
+                                                tomas.prochazka@skolajablunkov.cz<br>
+                                                +420 555 901 234
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="4" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="4" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ostatní učitelé -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chalkboard-teacher mr-1"></i>
+                            Ostatní učitelé
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export do Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Učitel</th>
+                                        <th>Aprobace</th>
+                                        <th>Aktivní výpůjčky</th>
+                                        <th>Celkem vypůjčeno</th>
+                                        <th>Oblíbené žánry</th>
+                                        <th>Kontakt</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user5-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Alena Krásná</strong><br>
+                                                    <small class="text-muted">Angličtina</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-info">Angličtina</span><br>
+                                            <span class="badge badge-secondary">Němčina</span>
+                                        </td>
+                                        <td><span class="badge badge-warning">2 knihy</span></td>
+                                        <td>18 knih</td>
+                                        <td>
+                                            <small>
+                                                Detektivka, Fantasy<br>
+                                                Jazykové příručky
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                alena.krasna@skolajablunkov.cz<br>
+                                                +420 555 567 890
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="5" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="5" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user6-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Pavel Rychlý</strong><br>
+                                                    <small class="text-muted">Tělesná výchova</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-success">Tělesná výchova</span><br>
+                                            <span class="badge badge-info">Biologie</span>
+                                        </td>
+                                        <td><span class="badge badge-success">0 knih</span></td>
+                                        <td>5 knih</td>
+                                        <td>
+                                            <small>
+                                                Sport, Zdraví<br>
+                                                Přírodní vědy
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                pavel.rychly@skolajablunkov.cz<br>
+                                                +420 555 678 901
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="6" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="6" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/lib/adminlte/dist/img/user7-128x128.jpg" class="img-circle img-size-32 mr-2" alt="Avatar">
+                                                <div>
+                                                    <strong>Mgr. Věra Moudrá</strong><br>
+                                                    <small class="text-muted">Výtvarná výchova</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-warning">Výtvarná výchova</span><br>
+                                            <span class="badge badge-info">Český jazyk</span>
+                                        </td>
+                                        <td><span class="badge badge-warning">1 kniha</span></td>
+                                        <td>12 knih</td>
+                                        <td>
+                                            <small>
+                                                Umění, Design<br>
+                                                Česká literatura
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                vera.moudra@skolajablunkov.cz<br>
+                                                +420 555 789 012
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Teachers" asp-action="Details" asp-route-id="7" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Teachers" asp-action="Edit" asp-route-id="7" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Nová výpůjčka">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Nejaktivnější čtenáři mezi učiteli -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-trophy mr-1"></i>
+                            Top čtenáři mezi učiteli
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-success text-xl">
+                                <i class="fas fa-medal"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-success">Mgr. Alena Krásná</span>
+                                </span>
+                                <span class="text-muted">18 knih tento rok</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-warning text-xl">
+                                <i class="fas fa-medal"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-warning">Mgr. Věra Moudrá</span>
+                                </span>
+                                <span class="text-muted">12 knih tento rok</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-info text-xl">
+                                <i class="fas fa-medal"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-info">Mgr. Marie Dvořáková</span>
+                                </span>
+                                <span class="text-muted">8 knih tento rok</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Oblíbené žánry učitelů
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-primary text-xl">
+                                <i class="fas fa-graduation-cap"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-primary">Učebnice</span>
+                                </span>
+                                <span class="text-muted">35% všech výpůjček</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-success text-xl">
+                                <i class="fas fa-book"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-success">Odborná literatura</span>
+                                </span>
+                                <span class="text-muted">28% všech výpůjček</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-warning text-xl">
+                                <i class="fas fa-book-open"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-warning">Beletrie</span>
+                                </span>
+                                <span class="text-muted">22% všech výpůjček</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

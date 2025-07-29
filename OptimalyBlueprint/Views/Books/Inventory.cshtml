@@ -1,0 +1,417 @@
+@{
+    ViewData["Title"] = "Inventura knihovny";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Inventura knihovny</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Správa knihovny</li>
+                    <li class="breadcrumb-item active">Inventura</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Stav inventury -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clipboard-check mr-1"></i>
+                            Aktuální stav inventury
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-success">
+                                <i class="fas fa-play mr-1"></i>
+                                Spustit novou inventuru
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-book"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Celkem knih</span>
+                                        <span class="info-box-number">2,847</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-success"><i class="fas fa-check"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Zkontrolováno</span>
+                                        <span class="info-box-number">2,830</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-warning"><i class="fas fa-question"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Nesouhlasí</span>
+                                        <span class="info-box-number">5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Chybí</span>
+                                        <span class="info-box-number">2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 99.4%" aria-valuenow="99.4" aria-valuemin="0" aria-valuemax="100">
+                                99.4% dokončeno
+                            </div>
+                        </div>
+                        
+                        <p class="text-muted">
+                            <i class="fas fa-calendar mr-1"></i>
+                            Poslední inventura: 15. prosince 2024
+                            <span class="ml-3">
+                                <i class="fas fa-user mr-1"></i>
+                                Zodpovědná osoba: Tomáš Novák
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Problematické knihy -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            Knihy s nesouhlasem
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kniha</th>
+                                        <th>Evidováno</th>
+                                        <th>Nalezeno</th>
+                                        <th>Rozdíl</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Malý princ</strong><br>
+                                            <small class="text-muted">Antoine de Saint-Exupéry</small>
+                                        </td>
+                                        <td><span class="badge badge-info">3 ks</span></td>
+                                        <td><span class="badge badge-warning">2 ks</span></td>
+                                        <td><span class="badge badge-danger">-1</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Robinson Crusoe</strong><br>
+                                            <small class="text-muted">Daniel Defoe</small>
+                                        </td>
+                                        <td><span class="badge badge-info">2 ks</span></td>
+                                        <td><span class="badge badge-success">3 ks</span></td>
+                                        <td><span class="badge badge-success">+1</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-times mr-1"></i>
+                            Chybějící knihy
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Kniha</th>
+                                        <th>Umístění</th>
+                                        <th>Poslední výpůjčka</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Babička</strong><br>
+                                            <small class="text-muted">Božena Němcová</small>
+                                        </td>
+                                        <td>A1-23</td>
+                                        <td>
+                                            <small>Jan Novák<br>vráceno 5.12.2024</small>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Dějiny světa</strong><br>
+                                            <small class="text-muted">František Palacký</small>
+                                        </td>
+                                        <td>A2-15</td>
+                                        <td>
+                                            <small class="text-danger">
+                                                Petr Novák<br>
+                                                <strong>NEVRACENO</strong>
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Inventura podle sekcí -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Inventura podle sekcí knihovny
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export inventury
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Sekce</th>
+                                        <th>Umístění</th>
+                                        <th>Celkem knih</th>
+                                        <th>Zkontrolováno</th>
+                                        <th>Souhlasí</th>
+                                        <th>Nesouhlasí</th>
+                                        <th>Chybí</th>
+                                        <th>Stav</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+                                        <td><strong>Próza česká</strong></td>
+                                        <td>A1-A3</td>
+                                        <td>485</td>
+                                        <td>485</td>
+                                        <td><span class="badge badge-success">483</span></td>
+                                        <td><span class="badge badge-warning">1</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><span class="badge badge-success">Dokončeno</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td><strong>Próza světová</strong></td>
+                                        <td>B1-B4</td>
+                                        <td>623</td>
+                                        <td>623</td>
+                                        <td><span class="badge badge-success">622</span></td>
+                                        <td><span class="badge badge-warning">1</span></td>
+                                        <td><span class="badge badge-success">0</span></td>
+                                        <td><span class="badge badge-success">Dokončeno</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><strong>Učebnice</strong></td>
+                                        <td>U1-U5</td>
+                                        <td>892</td>
+                                        <td>875</td>
+                                        <td><span class="badge badge-success">872</span></td>
+                                        <td><span class="badge badge-warning">2</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><span class="badge badge-warning">Probíhá</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Slovníky</strong></td>
+                                        <td>S1-S2</td>
+                                        <td>156</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">Nespuštěno</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Encyklopedie</strong></td>
+                                        <td>E1-E2</td>
+                                        <td>234</td>
+                                        <td>0</td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">-</span></td>
+                                        <td><span class="badge badge-secondary">Nespuštěno</span></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-primary">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Skenování pro inventuru -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-qrcode mr-1"></i>
+                            Skenování knih
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="scanInput">Naskenujte čárový kód nebo zadejte ISBN</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-lg" id="scanInput" placeholder="Naskenujte nebo zadejte ISBN...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary btn-lg" type="button">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Naskenováno dnes: <strong>45 knih</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-history mr-1"></i>
+                            Poslední naskenované
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <i class="fas fa-check text-success mr-1"></i>
+                                            <strong>Malý princ</strong>
+                                        </td>
+                                        <td><small class="text-muted">14:25</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fas fa-check text-success mr-1"></i>
+                                            <strong>Robinson Crusoe</strong>
+                                        </td>
+                                        <td><small class="text-muted">14:23</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fas fa-exclamation-triangle text-warning mr-1"></i>
+                                            <strong>Babička</strong>
+                                        </td>
+                                        <td><small class="text-muted">14:20</small></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fas fa-check text-success mr-1"></i>
+                                            <strong>Chemie 8. třída</strong>
+                                        </td>
+                                        <td><small class="text-muted">14:18</small></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

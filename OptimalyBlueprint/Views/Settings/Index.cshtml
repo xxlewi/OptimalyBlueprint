@@ -1,0 +1,249 @@
+@{
+    ViewData["Title"] = "Nastavení systému";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Nastavení systému</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Reporty a nástroje</li>
+                    <li class="breadcrumb-item active">Nastavení</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <div class="row">
+            <!-- Základní nastavení -->
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cog mr-1"></i>
+                            Základní nastavení knihovny
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="libraryName">Název knihovny</label>
+                                <input type="text" class="form-control" id="libraryName" value="Knihovna ZŠ Jablunkov">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="defaultLoanPeriod">Výchozí doba výpůjčky (dny)</label>
+                                <input type="number" class="form-control" id="defaultLoanPeriod" value="14" min="1" max="90">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="maxBooksPerStudent">Maximum knih na žáka</label>
+                                <input type="number" class="form-control" id="maxBooksPerStudent" value="3" min="1" max="10">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="maxBooksPerTeacher">Maximum knih na učitele</label>
+                                <input type="number" class="form-control" id="maxBooksPerTeacher" value="5" min="1" max="20">
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableReservations" checked>
+                                <label class="form-check-label" for="enableReservations">
+                                    Povolit rezervace knih
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableRenewals" checked>
+                                <label class="form-check-label" for="enableRenewals">
+                                    Povolit prodlužování výpůjček
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Nastavení upomínek -->
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bell mr-1"></i>
+                            Nastavení upomínek
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="reminderDays">Upomínka X dní před termínem</label>
+                                <input type="number" class="form-control" id="reminderDays" value="3" min="1" max="14">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="overdueReminderDays">Upomínka každých X dní po termínu</label>
+                                <input type="number" class="form-control" id="overdueReminderDays" value="7" min="1" max="30">
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="emailReminders" checked>
+                                <label class="form-check-label" for="emailReminders">
+                                    Posílat emailové upomínky
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="smsReminders">
+                                <label class="form-check-label" for="smsReminders">
+                                    Posílat SMS upomínky
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="parentNotifications" checked>
+                                <label class="form-check-label" for="parentNotifications">
+                                    Informovat rodiče o pokutách
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pokročilé nastavení -->
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-tools mr-1"></i>
+                            Pokročilé nastavení
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="fineAmount">Pokuta za den zpoždění (Kč)</label>
+                                <input type="number" class="form-control" id="fineAmount" value="5" min="0" max="100" step="0.1">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="maxFineAmount">Maximální pokuta na knihu (Kč)</label>
+                                <input type="number" class="form-control" id="maxFineAmount" value="500" min="0" max="5000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="damageFine">Pokuta za poškození knihy (Kč)</label>
+                                <input type="number" class="form-control" id="damageFine" value="200" min="0" max="2000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lostBookFine">Pokuta za ztracenou knihu (% z ceny)</label>
+                                <input type="number" class="form-control" id="lostBookFine" value="100" min="50" max="200">
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="blockOverdueUsers" checked>
+                                <label class="form-check-label" for="blockOverdueUsers">
+                                    Blokovat uživatele s knihou po termínu
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableBarcode">
+                                <label class="form-check-label" for="enableBarcode">
+                                    Povolit čárové kódy
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableRFID" checked>
+                                <label class="form-check-label" for="enableRFID">
+                                    Povolit RFID čipy
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Nastavení gamifikace -->
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-trophy mr-1"></i>
+                            Gamifikace a odměny
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableGamification" checked>
+                                <label class="form-check-label" for="enableGamification">
+                                    Povolit systém gamifikace
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pointsPerBook">Body za přečtenou knihu</label>
+                                <input type="number" class="form-control" id="pointsPerBook" value="10" min="1" max="100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="reviewPoints">Body za recenzi knihy</label>
+                                <input type="number" class="form-control" id="reviewPoints" value="5" min="1" max="50">
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableBadges" checked>
+                                <label class="form-check-label" for="enableBadges">
+                                    Povolit odznaky a achievementy
+                                </label>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="enableLeaderboard" checked>
+                                <label class="form-check-label" for="enableLeaderboard">
+                                    Zobrazovat žebříček čtenářů
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Akce -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-save mr-1"></i>
+                            Uložit nastavení
+                        </button>
+                        <button type="button" class="btn btn-warning btn-lg ml-2">
+                            <i class="fas fa-undo mr-1"></i>
+                            Obnovit výchozí
+                        </button>
+                        <button type="button" class="btn btn-info btn-lg ml-2">
+                            <i class="fas fa-file-export mr-1"></i>
+                            Export nastavení
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-lg ml-2">
+                            <i class="fas fa-file-import mr-1"></i>
+                            Import nastavení
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

@@ -209,7 +209,7 @@
           
           <!-- Nová výpůjčka -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Loans" asp-action="New" class="nav-link">
               <i class="nav-icon fas fa-arrow-right text-success"></i>
               <p>Nová výpůjčka</p>
             </a>
@@ -217,7 +217,7 @@
           
           <!-- Vrácení knihy -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Loans" asp-action="Return" class="nav-link">
               <i class="nav-icon fas fa-arrow-left text-info"></i>
               <p>Vrácení knihy</p>
             </a>
@@ -225,7 +225,7 @@
           
           <!-- Po termínu -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Loans" asp-action="Overdue" class="nav-link">
               <i class="nav-icon fas fa-exclamation-triangle text-warning"></i>
               <p>
                 Po termínu
@@ -248,25 +248,25 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Books" asp-action="Index" class="nav-link">
                   <i class="far fa-list-alt nav-icon"></i>
                   <p>Seznam všech knih</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Books" asp-action="Create" class="nav-link">
                   <i class="far fa-plus-square nav-icon"></i>
                   <p>Přidat novou knihu</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Genres" asp-action="Index" class="nav-link">
                   <i class="far fa-tags nav-icon"></i>
                   <p>Správa žánrů</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Books" asp-action="Inventory" class="nav-link">
                   <i class="far fa-wrench nav-icon"></i>
                   <p>Inventura</p>
                 </a>
@@ -276,7 +276,7 @@
 
           <!-- Správa výpůjček -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Loans" asp-action="Management" class="nav-link">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p>
                 Správa výpůjček
@@ -287,7 +287,7 @@
 
           <!-- Dnešní výpůjčky -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Loans" asp-action="Today" class="nav-link">
               <i class="nav-icon fas fa-calendar-day"></i>
               <p>
                 Dnešní výpůjčky
@@ -310,19 +310,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Students" asp-action="Index" class="nav-link">
                   <i class="far fa-list-alt nav-icon"></i>
                   <p>Seznam žáků</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Students" asp-action="Create" class="nav-link">
                   <i class="far fa-user-plus nav-icon"></i>
                   <p>Přidat žáka</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Students" asp-action="Responsibility" class="nav-link">
                   <i class="far fa-star nav-icon"></i>
                   <p>Zodpovědnost</p>
                 </a>
@@ -332,7 +332,7 @@
           
           <!-- Učitelé -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Teachers" asp-action="Index" class="nav-link">
               <i class="nav-icon fas fa-chalkboard-teacher"></i>
               <p>Učitelé</p>
             </a>
@@ -352,19 +352,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Statistics" asp-action="Reports" class="nav-link">
                   <i class="far fa-chart-line nav-icon"></i>
                   <p>Přehledy</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Statistics" asp-action="ExcelExport" class="nav-link">
                   <i class="far fa-file-excel nav-icon"></i>
                   <p>Export do Excel</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a asp-controller="Statistics" asp-action="PopularGenres" class="nav-link">
                   <i class="far fa-chart-pie nav-icon"></i>
                   <p>Oblíbené žánry</p>
                 </a>
@@ -374,7 +374,7 @@
           
           <!-- Nastavení -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a asp-controller="Settings" asp-action="Index" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>Nastavení systému</p>
             </a>

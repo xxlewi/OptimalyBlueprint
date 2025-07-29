@@ -1,0 +1,301 @@
+@{
+    ViewData["Title"] = "Seznam všech knih";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Seznam všech knih</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Správa knihovny</li>
+                    <li class="breadcrumb-item active">Seznam knih</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Filtry a vyhledávání -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-filter mr-1"></i>
+                            Filtrování a vyhledávání
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Books" asp-action="Create" class="btn btn-success">
+                                <i class="fas fa-plus mr-1"></i>
+                                Přidat novou knihu
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="searchText">Vyhledat knihu</label>
+                                    <input type="text" class="form-control" id="searchText" placeholder="Název, autor, ISBN...">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="genreFilter">Žánr</label>
+                                    <select class="form-control" id="genreFilter">
+                                        <option value="">Všechny žánry</option>
+                                        <option value="poezie">Poezie</option>
+                                        <option value="proza">Próza</option>
+                                        <option value="drama">Drama</option>
+                                        <option value="detektivka">Detektivka</option>
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="sci-fi">Sci-fi</option>
+                                        <option value="ucebnice">Učebnice</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="statusFilter">Dostupnost</label>
+                                    <select class="form-control" id="statusFilter">
+                                        <option value="">Všechny</option>
+                                        <option value="available">Dostupné</option>
+                                        <option value="borrowed">Vypůjčené</option>
+                                        <option value="reserved">Rezervované</option>
+                                        <option value="damaged">Poškozené</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>&nbsp;</label>
+                                    <button class="btn btn-primary btn-block">
+                                        <i class="fas fa-search mr-1"></i>
+                                        Hledat
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistiky knihovny -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>2,847</h3>
+                        <p>Celkem knih</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>2,760</h3>
+                        <p>Dostupných</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>87</h3>
+                        <p>Vypůjčených</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-hand-holding"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>12</h3>
+                        <p>Po termínu</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seznam knih -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Katalog školní knihovny
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export do Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ISBN</th>
+                                        <th>Název</th>
+                                        <th>Autor</th>
+                                        <th>Žánr</th>
+                                        <th>Rok vydání</th>
+                                        <th>Dostupnost</th>
+                                        <th>Umístění</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><small>978-80-7197-123-4</small></td>
+                                        <td><strong>Malý princ</strong></td>
+                                        <td>Antoine de Saint-Exupéry</td>
+                                        <td><span class="badge badge-primary">Próza</span></td>
+                                        <td>2018</td>
+                                        <td><span class="badge badge-success">Dostupná (3 ks)</span></td>
+                                        <td>A1-15</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Books" asp-action="Details" asp-route-id="1" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Books" asp-action="Edit" asp-route-id="1" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Vypůjčit">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>978-80-7397-456-7</small></td>
+                                        <td><strong>Robinson Crusoe</strong></td>
+                                        <td>Daniel Defoe</td>
+                                        <td><span class="badge badge-primary">Próza</span></td>
+                                        <td>2019</td>
+                                        <td><span class="badge badge-warning">Vypůjčená (1/2)</span></td>
+                                        <td>A2-08</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Books" asp-action="Details" asp-route-id="2" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Books" asp-action="Edit" asp-route-id="2" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Vypůjčit">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>978-80-247-789-0</small></td>
+                                        <td><strong>Matematika - příprava k maturitě</strong></td>
+                                        <td>kolektiv autorů</td>
+                                        <td><span class="badge badge-info">Učebnice</span></td>
+                                        <td>2020</td>
+                                        <td><span class="badge badge-danger">Vypůjčená - po termínu</span></td>
+                                        <td>U3-12</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Books" asp-action="Details" asp-route-id="3" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Books" asp-action="Edit" asp-route-id="3" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-danger" title="Po termínu - upomínka">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>978-80-86318-234-5</small></td>
+                                        <td><strong>Babička</strong></td>
+                                        <td>Božena Němcová</td>
+                                        <td><span class="badge badge-primary">Próza</span></td>
+                                        <td>2017</td>
+                                        <td><span class="badge badge-warning">Vypůjčená (2/3)</span></td>
+                                        <td>A1-23</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Books" asp-action="Details" asp-route-id="4" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Books" asp-action="Edit" asp-route-id="4" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-success" title="Vypůjčit">
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><small>978-80-253-345-6</small></td>
+                                        <td><strong>Chemie pro 8. třídu</strong></td>
+                                        <td>M. Štěpánek</td>
+                                        <td><span class="badge badge-info">Učebnice</span></td>
+                                        <td>2021</td>
+                                        <td><span class="badge badge-danger">Vypůjčená - po termínu</span></td>
+                                        <td>U2-07</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Books" asp-action="Details" asp-route-id="5" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a asp-controller="Books" asp-action="Edit" asp-route-id="5" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-danger" title="Po termínu - upomínka">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

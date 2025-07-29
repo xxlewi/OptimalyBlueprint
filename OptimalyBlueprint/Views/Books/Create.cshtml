@@ -1,0 +1,234 @@
+@{
+    ViewData["Title"] = "Přidat novou knihu";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Přidat novou knihu</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Správa knihovny</li>
+                    <li class="breadcrumb-item"><a asp-controller="Books" asp-action="Index">Seznam knih</a></li>
+                    <li class="breadcrumb-item active">Přidat knihu</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <form method="post">
+            <div class="row">
+                <!-- Základní informace -->
+                <div class="col-md-8">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-book mr-1"></i>
+                                Základní informace o knize
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">Název knihy *</label>
+                                        <input type="text" class="form-control" id="title" name="title" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="author">Autor *</label>
+                                        <input type="text" class="form-control" id="author" name="author" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="isbn">ISBN</label>
+                                        <input type="text" class="form-control" id="isbn" name="isbn" placeholder="978-80-xxx-xxx-x">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="publishYear">Rok vydání</label>
+                                        <input type="number" class="form-control" id="publishYear" name="publishYear" min="1900" max="2025">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="publisher">Vydavatel</label>
+                                        <input type="text" class="form-control" id="publisher" name="publisher">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="genre">Žánr *</label>
+                                        <select class="form-control" id="genre" name="genre" required>
+                                            <option value="">Vyberte žánr</option>
+                                            <option value="poezie">Poezie</option>
+                                            <option value="proza">Próza</option>
+                                            <option value="drama">Drama</option>
+                                            <option value="detektivka">Detektivka</option>
+                                            <option value="fantasy">Fantasy</option>
+                                            <option value="sci-fi">Sci-fi</option>
+                                            <option value="historie">Historie</option>
+                                            <option value="ucebnice">Učebnice</option>
+                                            <option value="slovniky">Slovníky</option>
+                                            <option value="encyklopedie">Encyklopedie</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="language">Jazyk</label>
+                                        <select class="form-control" id="language" name="language">
+                                            <option value="cs">Čeština</option>
+                                            <option value="sk">Slovenština</option>
+                                            <option value="en">Angličtina</option>
+                                            <option value="de">Němčina</option>
+                                            <option value="fr">Francouzština</option>
+                                            <option value="other">Jiný</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Popis knihy</label>
+                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Krátký popis obsahu knihy..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Správa exemplářů a umístění -->
+                <div class="col-md-4">
+                    <div class="card card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-warehouse mr-1"></i>
+                                Exempláře a umístění
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="copies">Počet exemplářů *</label>
+                                <input type="number" class="form-control" id="copies" name="copies" min="1" value="1" required>
+                                <small class="form-text text-muted">Kolik kopií této knihy máme k dispozici</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="location">Umístění v knihovně</label>
+                                <input type="text" class="form-control" id="location" name="location" placeholder="např. A1-15, U2-07">
+                                <small class="form-text text-muted">Regál-pozice</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="condition">Stav knih</label>
+                                <select class="form-control" id="condition" name="condition">
+                                    <option value="excellent">Výborný</option>
+                                    <option value="good" selected>Dobrý</option>
+                                    <option value="fair">Uspokojivý</option>
+                                    <option value="poor">Špatný</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="recommendedAge">Doporučený věk</label>
+                                <select class="form-control" id="recommendedAge" name="recommendedAge">
+                                    <option value="">Neurčeno</option>
+                                    <option value="6-8">6-8 let</option>
+                                    <option value="9-11">9-11 let</option>
+                                    <option value="12-15">12-15 let</option>
+                                    <option value="15+">15+ let</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pokročilé možnosti -->
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-cogs mr-1"></i>
+                                Pokročilé nastavení
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="isReference" name="isReference">
+                                <label class="form-check-label" for="isReference">
+                                    Příručková kniha
+                                </label>
+                                <small class="form-text text-muted">Nelze vypůjčit domů</small>
+                            </div>
+                            
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="isPopular" name="isPopular">
+                                <label class="form-check-label" for="isPopular">
+                                    Oblíbená kniha
+                                </label>
+                                <small class="form-text text-muted">Zobrazí se v doporučených</small>
+                            </div>
+                            
+                            <div class="form-group mt-3">
+                                <label for="loanPeriod">Doba výpůjčky (dny)</label>
+                                <input type="number" class="form-control" id="loanPeriod" name="loanPeriod" value="14" min="1" max="90">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tlačítka -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-save mr-1"></i>
+                                Uložit knihu
+                            </button>
+                            <button type="button" class="btn btn-success btn-lg ml-2" onclick="saveAndAddAnother()">
+                                <i class="fas fa-plus mr-1"></i>
+                                Uložit a přidat další
+                            </button>
+                            <a asp-controller="Books" asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                                <i class="fas fa-times mr-1"></i>
+                                Zrušit
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</section>
+
+<script>
+function saveAndAddAnother() {
+    // Přidá hidden field pro indikaci "save and add another"
+    const form = document.querySelector('form');
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'saveAndAddAnother';
+    input.value = 'true';
+    form.appendChild(input);
+    form.submit();
+}
+</script>

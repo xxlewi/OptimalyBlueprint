@@ -1,0 +1,349 @@
+@{
+    ViewData["Title"] = "Správa žánrů";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Správa žánrů</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Správa knihovny</li>
+                    <li class="breadcrumb-item active">Správa žánrů</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Statistiky žánrů -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>15</h3>
+                        <p>Aktivních žánrů</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>Próza</h3>
+                        <p>Nejčastější žánr</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>892</h3>
+                        <p>Učebnic</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>234</h3>
+                        <p>Příručky</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Správa žánrů -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-list mr-1"></i>
+                            Seznam žánrů
+                        </h3>
+                        <div class="card-tools">
+                            <a asp-controller="Genres" asp-action="Create" class="btn btn-success">
+                                <i class="fas fa-plus mr-1"></i>
+                                Přidat žánr
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Název žánru</th>
+                                        <th>Počet knih</th>
+                                        <th>Oblíbenost</th>
+                                        <th>Barva</th>
+                                        <th>Stav</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>Próza</strong>
+                                            <br><small class="text-muted">Prozaická díla českých i světových autorů</small>
+                                        </td>
+                                        <td><span class="badge badge-info">1,108</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success" style="width: 85%"></div>
+                                            </div>
+                                            <small>85% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-primary">Modrá</span></td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="1" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-info" title="Statistiky">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Učebnice</strong>
+                                            <br><small class="text-muted">Školní učebnice pro všechny předměty</small>
+                                        </td>
+                                        <td><span class="badge badge-info">892</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-info" style="width: 92%"></div>
+                                            </div>
+                                            <small>92% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-info">Tyrkysová</span></td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="2" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-info" title="Statistiky">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Poetry</strong>
+                                            <br><small class="text-muted">Poetická díla a sbírky</small>
+                                        </td>
+                                        <td><span class="badge badge-info">234</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                            </div>
+                                            <small>45% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-success">Zelená</span></td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="3" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-info" title="Statistiky">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Fantasy</strong>
+                                            <br><small class="text-muted">Fantasy a sci-fi literatura</small>
+                                        </td>
+                                        <td><span class="badge badge-info">187</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success" style="width: 78%"></div>
+                                            </div>
+                                            <small>78% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-warning">Oranžová</span></td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="4" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-info" title="Statistiky">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Detektivka</strong>
+                                            <br><small class="text-muted">Detektivní a krimi romány</small>
+                                        </td>
+                                        <td><span class="badge badge-info">156</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success" style="width: 67%"></div>
+                                            </div>
+                                            <small>67% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-danger">Červená</span></td>
+                                        <td><span class="badge badge-success">Aktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="5" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-info" title="Statistiky">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td>
+                                            <strong>Komedie</strong>
+                                            <br><small class="text-muted">Komediální a humoristická díla</small>
+                                        </td>
+                                        <td><span class="badge badge-secondary">0</span></td>
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                                            </div>
+                                            <small>0% oblíbenost</small>
+                                        </td>
+                                        <td><span class="badge badge-secondary">Nedef.</span></td>
+                                        <td><span class="badge badge-warning">Neaktivní</span></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a asp-controller="Genres" asp-action="Edit" asp-route-id="6" class="btn btn-sm btn-warning">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-danger" title="Odstranit">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nejoblíbenější žánry -->
+            <div class="col-md-4">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-pie mr-1"></i>
+                            Nejoblíbenější žánry
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-success text-xl">
+                                <i class="fas fa-book"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-success">Učebnice</span>
+                                </span>
+                                <span class="text-muted">892 výpůjček tento měsíc</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-warning text-xl">
+                                <i class="fas fa-book-open"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-warning">Próza</span>
+                                </span>
+                                <span class="text-muted">245 výpůjček tento měsíc</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+                            <p class="text-info text-xl">
+                                <i class="fas fa-dragon"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-info">Fantasy</span>
+                                </span>
+                                <span class="text-muted">156 výpůjček tento měsíc</span>
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="text-danger text-xl">
+                                <i class="fas fa-search"></i>
+                            </p>
+                            <p class="d-flex flex-column text-right">
+                                <span class="font-weight-bold">
+                                    <span class="text-danger">Detektivka</span>
+                                </span>
+                                <span class="text-muted">98 výpůjček tento měsíc</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rychlé akce -->
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt mr-1"></i>
+                            Rychlé akce
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary btn-block mb-2">
+                            <i class="fas fa-sync mr-1"></i>
+                            Aktualizovat statistiky
+                        </button>
+                        <button class="btn btn-success btn-block mb-2">
+                            <i class="fas fa-file-excel mr-1"></i>
+                            Export žánrů do Excel
+                        </button>
+                        <button class="btn btn-info btn-block">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Zobrazit detailní analýzu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>

@@ -1,0 +1,405 @@
+@{
+    ViewData["Title"] = "Zodpovědnost žáků";
+}
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Systém zodpovědnosti žáků</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                    <li class="breadcrumb-item">Uživatelé</li>
+                    <li class="breadcrumb-item">Žáci</li>
+                    <li class="breadcrumb-item active">Zodpovědnost</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        
+        <!-- Vysvětlení systému -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Jak funguje systém zodpovědnosti
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="mb-2">
+                                    <strong>Systém zodpovědnosti hodnotí žáky podle jejich chování při vypůjčování knih:</strong>
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-star text-success mr-1"></i> <strong>5 hvězdiček:</strong> Výborná zodpovědnost - žák vždy vrací knihy včas a v dobrém stavu</li>
+                                    <li><i class="fas fa-star text-success mr-1"></i> <strong>4 hvězdičky:</strong> Dobrá zodpovědnost - žák většinou vrací knihy včas</li>
+                                    <li><i class="fas fa-star text-warning mr-1"></i> <strong>3 hvězdičky:</strong> Průměrná zodpovědnost - občasné zpoždění nebo drobné poškození</li>
+                                    <li><i class="fas fa-star text-warning mr-1"></i> <strong>2 hvězdičky:</strong> Slabá zodpovědnost - častá zpoždění nebo poškození knih</li>
+                                    <li><i class="fas fa-star text-danger mr-1"></i> <strong>1 hvězdička:</strong> Velmi slabá zodpovědnost - pravidelné problémy s vrácením knih</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-box">
+                                    <span class="info-box-icon bg-info"><i class="fas fa-calculator"></i></span>
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">Automatické hodnocení</span>
+                                        <span class="info-box-number">Na základě historie</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Statistiky zodpovědnosti -->
+        <div class="row">
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>89</h3>
+                        <p>⭐⭐⭐⭐⭐ (36%)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>76</h3>
+                        <p>⭐⭐⭐⭐ (31%)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>52</h3>
+                        <p>⭐⭐⭐ (21%)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-meh"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>23</h3>
+                        <p>⭐⭐ (9%)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-frown"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>7</h3>
+                        <p>⭐ (3%)</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>4.1</h3>
+                        <p>Průměr školy</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Top žáci -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-medal mr-1"></i>
+                            Nejzodpovědnější žáci (5⭐)
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Pořadí</th>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Vypůjčeno</th>
+                                        <th>Včasnost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="badge badge-warning">🥇</span></td>
+                                        <td><strong>Tomáš Novák</strong></td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>23 knih</td>
+                                        <td><span class="badge badge-success">100%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-secondary">🥈</span></td>
+                                        <td><strong>Petr Novák</strong></td>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>18 knih</td>
+                                        <td><span class="badge badge-success">100%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-warning">🥉</span></td>
+                                        <td><strong>Marie Svobodová</strong></td>
+                                        <td><span class="badge badge-primary">8.A</span></td>
+                                        <td>31 knih</td>
+                                        <td><span class="badge badge-success">97%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td><strong>Pavel Procházka</strong></td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>28 knih</td>
+                                        <td><span class="badge badge-success">96%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5.</td>
+                                        <td><strong>Anna Svobodová</strong></td>
+                                        <td><span class="badge badge-primary">8.B</span></td>
+                                        <td>15 knih</td>
+                                        <td><span class="badge badge-success">95%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            Žáci vyžadující pozornost (1-2⭐)
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Žák</th>
+                                        <th>Třída</th>
+                                        <th>Hodnocení</th>
+                                        <th>Problémy</th>
+                                        <th>Akce</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-danger">
+                                        <td><strong>Jan Procházka</strong></td>
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>
+                                            <div class="text-danger">
+                                                ⭐ (1/5)
+                                                <small class="d-block text-muted">Velmi slabá</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                5× po termínu<br>
+                                                2× poškození
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><strong>Markéta Dvořáková</strong></td>
+                                        <td><span class="badge badge-primary">6.A</span></td>
+                                        <td>
+                                            <div class="text-warning">
+                                                ⭐⭐ (2/5)
+                                                <small class="d-block text-muted">Slabá</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                3× po termínu<br>
+                                                1× poškození
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-envelope"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><strong>Jakub Černý</strong></td>
+                                        <td><span class="badge badge-primary">8.A</span></td>
+                                        <td>
+                                            <div class="text-warning">
+                                                ⭐⭐ (2/5)
+                                                <small class="d-block text-muted">Slabá</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                4× po termínu<br>
+                                                0× poškození
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-warning">
+                                                <i class="fas fa-envelope"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Přehled podle tříd -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-chart-bar mr-1"></i>
+                            Průměrná zodpovědnost podle tříd
+                        </h3>
+                        <div class="card-tools">
+                            <button class="btn btn-info btn-sm">
+                                <i class="fas fa-file-excel mr-1"></i>
+                                Export statistik
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Třída</th>
+                                        <th>Třídní učitel</th>
+                                        <th>Počet žáků</th>
+                                        <th>Průměrná zodpovědnost</th>
+                                        <th>5⭐</th>
+                                        <th>4⭐</th>
+                                        <th>3⭐</th>
+                                        <th>2⭐</th>
+                                        <th>1⭐</th>
+                                        <th>Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+                                        <td><span class="badge badge-primary">9.A</span></td>
+                                        <td>Mgr. Marie Dvořáková</td>
+                                        <td>28</td>
+                                        <td>
+                                            <strong>4.6</strong>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar bg-success" style="width: 92%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">18</span></td>
+                                        <td><span class="badge badge-success">7</span></td>
+                                        <td><span class="badge badge-warning">2</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><span class="badge badge-danger">0</span></td>
+                                        <td><i class="fas fa-arrow-up text-success"></i></td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td><span class="badge badge-primary">8.A</span></td>
+                                        <td>Mgr. Petr Svoboda</td>
+                                        <td>26</td>
+                                        <td>
+                                            <strong>4.3</strong>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar bg-success" style="width: 86%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">14</span></td>
+                                        <td><span class="badge badge-success">8</span></td>
+                                        <td><span class="badge badge-warning">3</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><span class="badge badge-danger">0</span></td>
+                                        <td><i class="fas fa-arrow-up text-success"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="badge badge-primary">7.A</span></td>
+                                        <td>Mgr. Jana Nováková</td>
+                                        <td>24</td>
+                                        <td>
+                                            <strong>4.1</strong>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar bg-info" style="width: 82%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">12</span></td>
+                                        <td><span class="badge badge-success">8</span></td>
+                                        <td><span class="badge badge-warning">3</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><span class="badge badge-danger">0</span></td>
+                                        <td><i class="fas fa-minus text-warning"></i></td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><span class="badge badge-primary">6.A</span></td>
+                                        <td>Mgr. Tomáš Procházka</td>
+                                        <td>22</td>
+                                        <td>
+                                            <strong>3.7</strong>
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar bg-warning" style="width: 74%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge badge-success">8</span></td>
+                                        <td><span class="badge badge-success">6</span></td>
+                                        <td><span class="badge badge-warning">5</span></td>
+                                        <td><span class="badge badge-danger">2</span></td>
+                                        <td><span class="badge badge-danger">1</span></td>
+                                        <td><i class="fas fa-arrow-down text-danger"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
