@@ -26,15 +26,15 @@
         <div class="row">
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-info">
+                <div class="small-box bg-primary">
                     <div class="inner">
                         <h3>1,246</h3>
-                        <p>Celkem knih</p>
+                        <p>Knih v knihovně</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-book"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Více informací <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer" onclick="highlightMenuItem('katalog-knih')">Zobrazit katalog <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -42,13 +42,13 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>87</h3>
-                        <p>Aktivní výpůjčky</p>
+                        <h3>23</h3>
+                        <p>Dnes půjčeno</p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-exchange-alt"></i>
+                        <i class="fas fa-arrow-right"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Více informací <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer" onclick="highlightMenuItem('dnesni-vypujcky')">Dnešní výpůjčky <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -57,26 +57,26 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>12</h3>
-                        <p>Po termínu</p>
+                        <p>Po termínu vrácení</p>
                     </div>
                     <div class="icon">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Více informací <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer" onclick="highlightMenuItem('po-terminu')">Poslat upomínky <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>342</h3>
-                        <p>Registrovaní žáci</p>
+                        <h3>87</h3>
+                        <p>Aktuálně půjčeno</p>
                     </div>
                     <div class="icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-exchange-alt"></i>
                     </div>
-                    <a href="#" class="small-box-footer">Více informací <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="#" class="small-box-footer" onclick="highlightMenuItem('sprava-vypujcek')">Správa výpůjček <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -87,13 +87,16 @@
         <div class="row">
             <!-- Left col -->
             <section class="col-lg-7">
-                <!-- Nejoblíbenější knihy -->
+                <!-- Nejpůjčovanější knihy -->
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-star mr-1"></i>
-                            Nejoblíbenější knihy tento měsíc
+                            <i class="fas fa-chart-line mr-1"></i>
+                            Nejpůjčovanější knihy tento měsíc
                         </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-info">Pro nákupní rozhodování</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -102,46 +105,39 @@
                                     <tr>
                                         <th>Název knihy</th>
                                         <th>Autor</th>
-                                        <th>Výpůjčky</th>
-                                        <th>Hodnocení</th>
+                                        <th>Žánr</th>
+                                        <th>Půjčeno</th>
+                                        <th>Stav</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Harry Potter a kámen mudrců</td>
+                                        <td><strong>Harry Potter a kámen mudrců</strong></td>
                                         <td>J.K. Rowlingová</td>
-                                        <td><span class="badge badge-success">23</span></td>
-                                        <td>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                        </td>
+                                        <td><span class="badge badge-purple">Fantasy</span></td>
+                                        <td><span class="badge badge-success">23×</span></td>
+                                        <td><span class="text-success">Dostupné</span></td>
                                     </tr>
                                     <tr>
-                                        <td>Hobit aneb cesta tam a zase zpátky</td>
-                                        <td>J.R.R. Tolkien</td>
-                                        <td><span class="badge badge-success">18</span></td>
-                                        <td>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="far fa-star text-warning"></i>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rychlé šípy</td>
+                                        <td><strong>Rychlé šípy</strong></td>
                                         <td>Jaroslav Foglar</td>
-                                        <td><span class="badge badge-success">15</span></td>
-                                        <td>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="far fa-star text-warning"></i>
-                                        </td>
+                                        <td><span class="badge badge-primary">Dobrodružné</span></td>
+                                        <td><span class="badge badge-success">18×</span></td>
+                                        <td><span class="text-danger">Vypůjčené</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Babička</strong></td>
+                                        <td>Božena Němcová</td>
+                                        <td><span class="badge badge-secondary">Klasika</span></td>
+                                        <td><span class="badge badge-success">15×</span></td>
+                                        <td><span class="text-success">Dostupné</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dějiny českého národa</strong></td>
+                                        <td>František Palacký</td>
+                                        <td><span class="badge badge-warning">Vzdělávací</span></td>
+                                        <td><span class="badge badge-success">12×</span></td>
+                                        <td><span class="text-warning">Poškozené</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -149,35 +145,58 @@
                     </div>
                 </div>
 
-                <!-- Dnešní aktivity -->
+                <!-- Poslední výpůjčky a vrácení -->
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-clock mr-1"></i>
-                            Dnešní aktivity
+                            <i class="fas fa-history mr-1"></i>
+                            Poslední výpůjčky a vrácení
                         </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-primary">Dnes</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled">
-                            <li>
-                                <i class="fas fa-arrow-right text-success mr-2"></i>
-                                <strong>Jana Novákova</strong> si vypůjčila "Malý princ"
-                                <span class="float-right text-muted text-sm">před 5 min</span>
+                            <li class="media">
+                                <div class="media-object bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                    <i class="fas fa-arrow-right text-white"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <strong>Jana Nováková (7.A)</strong> si vypůjčila<br>
+                                    <small>"Malý princ" - Antoine de Saint-Exupéry</small>
+                                    <span class="float-right text-muted text-sm">9:15</span>
+                                </div>
                             </li>
-                            <li class="mt-2">
-                                <i class="fas fa-arrow-left text-info mr-2"></i>
-                                <strong>Tomáš Svoboda</strong> vrátil "Robinson Crusoe"
-                                <span class="float-right text-muted text-sm">před 15 min</span>
+                            <li class="media mt-3">
+                                <div class="media-object bg-info rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                    <i class="fas fa-arrow-left text-white"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <strong>Tomáš Svoboda (8.B)</strong> vrátil<br>
+                                    <small>"Robinson Crusoe" - Daniel Defoe</small>
+                                    <span class="float-right text-muted text-sm">8:45</span>
+                                </div>
                             </li>
-                            <li class="mt-2">
-                                <i class="fas fa-calendar text-warning mr-2"></i>
-                                <strong>Markéta Dvořáková</strong> rezervovala "Děti z Bullerbynu"
-                                <span class="float-right text-muted text-sm">před 1 hod</span>
+                            <li class="media mt-3">
+                                <div class="media-object bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                    <i class="fas fa-bookmark text-white"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <strong>Markéta Dvořáková (6.A)</strong> rezervovala<br>
+                                    <small>"Děti z Bullerbynu" - Astrid Lindgren</small>
+                                    <span class="float-right text-muted text-sm">8:30</span>
+                                </div>
                             </li>
-                            <li class="mt-2">
-                                <i class="fas fa-arrow-right text-success mr-2"></i>
-                                <strong>Pavel Procházka</strong> si vypůjčil "Babička"
-                                <span class="float-right text-muted text-sm">před 2 hod</span>
+                            <li class="media mt-3">
+                                <div class="media-object bg-success rounded-circle d-flex align-items-center justify-content-center" style="width: 35px; height: 35px;">
+                                    <i class="fas fa-arrow-right text-white"></i>
+                                </div>
+                                <div class="media-body ml-3">
+                                    <strong>Pavel Procházka (9.A)</strong> si vypůjčil<br>
+                                    <small>"Babička" - Božena Němcová</small>
+                                    <span class="float-right text-muted text-sm">8:00</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -187,88 +206,162 @@
             
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-5">
-                <!-- Po termínu -->
+                <!-- Po termínu - DŮLEŽITÉ pro knihovníka -->
                 <div class="card card-danger">
                     <div class="card-header">
-                        <h3 class="card-title">Knihy po termínu</h3>
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle mr-1"></i>
+                            Knihy po termínu vrácení
+                        </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-danger">Vyžaduje akci!</span>
+                        </div>
                     </div>
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <b>Petr Novák (7.A)</b> - "Dějiny světa"
-                                <span class="float-right badge bg-danger">5 dní</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Petr Novák (7.A)</strong><br>
+                                    <small>"Dějiny světa" - František Palacký</small><br>
+                                    <small class="text-muted">Měl vrátit: 22.7.2025</small>
+                                </div>
+                                <span class="badge badge-danger">5 dní</span>
                             </li>
-                            <li class="list-group-item">
-                                <b>Anna Svobodová (8.B)</b> - "Chemie pro 8. třídu"
-                                <span class="float-right badge bg-danger">3 dny</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Anna Svobodová (8.B)</strong><br>
+                                    <small>"Chemie pro 8. třídu" - M. Štěpánek</small><br>
+                                    <small class="text-muted">Měla vrátit: 24.7.2025</small>
+                                </div>
+                                <span class="badge badge-danger">3 dny</span>
                             </li>
-                            <li class="list-group-item">
-                                <b>Jan Procházka (9.A)</b> - "Matematika - příprava k maturitě"
-                                <span class="float-right badge bg-danger">2 dny</span>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>Jan Procházka (9.A)</strong><br>
+                                    <small>"Matematika - příprava k maturitě"</small><br>
+                                    <small class="text-muted">Měl vrátit: 25.7.2025</small>
+                                </div>
+                                <span class="badge badge-danger">2 dny</span>
                             </li>
                         </ul>
+                        <div class="card-footer">
+                            <button class="btn btn-danger btn-sm">
+                                <i class="fas fa-envelope"></i> Poslat upomínky
+                            </button>
+                            <button class="btn btn-warning btn-sm ml-2">
+                                <i class="fas fa-phone"></i> Zavolat rodičům
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Statistiky žánrů -->
+                <!-- Stav knihovního fondu -->
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            <i class="fas fa-chart-pie mr-1"></i>
-                            Oblíbené žánry
+                            <i class="fas fa-books mr-1"></i>
+                            Stav knihovního fondu
                         </h3>
+                        <div class="card-tools">
+                            <span class="badge badge-info">Aktuální</span>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                Dobrodružné (40%)
+                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                Dostupné (874)
+                            </div>
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                Vypůjčené (248)
+                            </div>
+                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%">
+                                Rezervované (99)
+                            </div>
+                            <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width: 2%">
+                                Poškozené (25)
                             </div>
                         </div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
-                                Sci-Fi (25%)
+                        
+                        <h6 class="mt-4 mb-2">Oblíbené žánry dle půjčování:</h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <small>1. Dobrodružné</small>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-primary" style="width: 35%"></div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <small>2. Fantasy</small>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-purple" style="width: 28%"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                Vzdělávací (20%)
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <small>3. Vzdělávací</small>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-warning" style="width: 22%"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                Historické (15%)
+                            <div class="col-6">
+                                <small>4. Klasika</small>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-info" style="width: 15%"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Rychlé akce -->
+                <!-- Rychlé akce pro knihovníka -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Rychlé akce</h3>
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt mr-1"></i>
+                            Rychlé akce
+                        </h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-                                <a href="#" class="btn btn-app">
-                                    <i class="fas fa-plus"></i> Přidat knihu
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-success btn-block">
+                                    <i class="fas fa-arrow-right"></i><br>
+                                    <small>Nová výpůjčka</small>
                                 </a>
                             </div>
-                            <div class="col-6">
-                                <a href="#" class="btn btn-app">
-                                    <i class="fas fa-user-plus"></i> Nový žák
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-info btn-block">
+                                    <i class="fas fa-arrow-left"></i><br>
+                                    <small>Vrácení knihy</small>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                <a href="#" class="btn btn-app">
-                                    <i class="fas fa-exchange-alt"></i> Výpůjčka
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-primary btn-block">
+                                    <i class="fas fa-plus"></i><br>
+                                    <small>Přidat knihu</small>
                                 </a>
                             </div>
-                            <div class="col-6">
-                                <a href="#" class="btn btn-app">
-                                    <i class="fas fa-file-export"></i> Export
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-secondary btn-block">
+                                    <i class="fas fa-search"></i><br>
+                                    <small>Najít v katalogu</small>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-warning btn-block">
+                                    <i class="fas fa-user-plus"></i><br>
+                                    <small>Nový žák</small>
+                                </a>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <a href="#" class="btn btn-dark btn-block">
+                                    <i class="fas fa-file-excel"></i><br>
+                                    <small>Export dat</small>
                                 </a>
                             </div>
                         </div>

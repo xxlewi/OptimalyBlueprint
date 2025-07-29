@@ -45,7 +45,7 @@
         <div class="navbar-search-block">
           <form class="form-inline">
             <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Hledat knihy..." aria-label="Search">
+              <input class="form-control form-control-navbar" type="search" placeholder="Hledat knihy, autory, žáky..." aria-label="Search">
               <div class="input-group-append">
                 <button class="btn btn-navbar" type="submit">
                   <i class="fas fa-search"></i>
@@ -59,57 +59,120 @@
         </div>
       </li>
 
-      <!-- Messages Dropdown Menu -->
+      <!-- Rezervace a požadavky -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <i class="fas fa-bookmark"></i>
+          <span class="badge badge-info navbar-badge">5</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">5 rezervací ke zpracování</span>
+          <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <div class="media">
-              <img src="~/lib/adminlte/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Knihovník
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+              <div class="media-object bg-info rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="fas fa-bookmark text-white"></i>
+              </div>
+              <div class="media-body ml-3">
+                <h3 class="dropdown-item-title text-sm">
+                  Markéta Dvořáková (6.A)
                 </h3>
-                <p class="text-sm">Nová kniha byla přidána do katalogu</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> před 4 hodinami</p>
+                <p class="text-sm">Rezervovala "Děti z Bullerbynu"</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> před 30 min</p>
               </div>
             </div>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Zobrazit všechny zprávy</a>
+          <a href="#" class="dropdown-item">
+            <div class="media">
+              <div class="media-object bg-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                <i class="fas fa-user text-white"></i>
+              </div>
+              <div class="media-body ml-3">
+                <h3 class="dropdown-item-title text-sm">
+                  Pavel Novák (8.A)
+                </h3>
+                <p class="text-sm">Požádal o prodloužení výpůjčky</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> před 1 hod</p>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">Zobrazit všechny rezervace</a>
         </div>
       </li>
-      <!-- Notifications Dropdown Menu -->
+      <!-- Upomínky a problémy -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <i class="fas fa-exclamation-triangle"></i>
+          <span class="badge badge-danger navbar-badge">12</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 upozornění</span>
+          <span class="dropdown-item dropdown-header">12 knihy po termínu</span>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 nové zprávy
-            <span class="float-right text-muted text-sm">před 3 min</span>
+            <i class="fas fa-clock text-danger mr-2"></i> 3 knihy po termínu > 5 dní
+            <span class="float-right text-muted text-sm">Kritické</span>
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 požadavků na přátelství
-            <span class="float-right text-muted text-sm">před 12 hodinami</span>
+            <i class="fas fa-envelope text-warning mr-2"></i> 5 upomínek k odeslání
+            <span class="float-right text-muted text-sm">Dnes</span>
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 nové reporty
-            <span class="float-right text-muted text-sm">před 2 dny</span>
+            <i class="fas fa-exclamation text-info mr-2"></i> 2 poškozené knihy
+            <span class="float-right text-muted text-sm">Včera</span>
           </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">Zobrazit všechna upozornění</a>
         </div>
       </li>
+      
+      <!-- User Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" style="width: 20px; height: 20px; border: 1px solid rgba(255,255,255,0.3);">
+          <span class="d-none d-md-inline ml-1">Tomáš Novák</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <!-- User image -->
+          <div class="dropdown-item-header d-flex align-items-center p-3">
+            <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" style="width: 65px; height: 65px; border: 2px solid rgba(255,255,255,0.3);">
+            <div class="ml-3">
+              <h3 class="dropdown-item-title mb-1">
+                Tomáš Novák
+                <span class="float-right text-sm text-success"><i class="fas fa-circle"></i></span>
+              </h3>
+              <p class="text-sm mb-1">Hlavní knihovník</p>
+              <p class="text-sm text-muted mb-0">
+                <i class="far fa-clock mr-1"></i> Online od 7:30
+              </p>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          
+          <!-- Menu Body -->
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-user mr-2"></i> Můj profil
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-cog mr-2"></i> Nastavení
+          </a>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-key mr-2"></i> Změnit heslo
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-question mr-2"></i> Nápověda
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer bg-danger">
+            <i class="fas fa-sign-out-alt mr-2"></i> Odhlásit se
+          </a>
+        </div>
+      </li>
+      
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -123,130 +186,165 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a asp-controller="Home" asp-action="Index" class="brand-link">
-      <img src="~/lib/adminlte/dist/img/AdminLTELogo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Školní knihovna</span>
+      <i class="fas fa-book-open brand-image img-circle elevation-3 text-white bg-primary d-flex align-items-center justify-content-center" style="width: 33px; height: 33px; margin-right: 10px;"></i>
+      <span class="brand-text font-weight-light">Knihovna ZŠ</span>
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="~/lib/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Knihovník</a>
-        </div>
-      </div>
-
+    <div class="sidebar" style="position: relative; height: calc(100vh - 57px); padding-bottom: 40px;">
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <!-- DENNÍ ČINNOSTI -->
+          <li class="nav-header">DENNÍ ČINNOSTI</li>
+          
           <!-- Dashboard -->
           <li class="nav-item">
-            <a asp-controller="Home" asp-action="Index" class="nav-link">
+            <a asp-controller="Home" asp-action="Index" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
+              <p>Přehled dne</p>
             </a>
           </li>
           
-          <!-- Knihy -->
+          <!-- Nová výpůjčka -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-arrow-right text-success"></i>
+              <p>Nová výpůjčka</p>
+            </a>
+          </li>
+          
+          <!-- Vrácení knihy -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-arrow-left text-info"></i>
+              <p>Vrácení knihy</p>
+            </a>
+          </li>
+          
+          <!-- Po termínu -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-exclamation-triangle text-warning"></i>
+              <p>
+                Po termínu
+                <span class="badge badge-danger navbar-badge right">12</span>
+              </p>
+            </a>
+          </li>
+
+          <!-- SPRÁVA KNIHOVNY -->
+          <li class="nav-header">SPRÁVA KNIHOVNY</li>
+          
+          <!-- Katalog knih -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Knihy
+                Katalog knih
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Seznam knih</p>
+                  <i class="far fa-list-alt nav-icon"></i>
+                  <p>Seznam všech knih</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Přidat knihu</p>
+                  <i class="far fa-plus-square nav-icon"></i>
+                  <p>Přidat novou knihu</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Žánry</p>
+                  <i class="far fa-tags nav-icon"></i>
+                  <p>Správa žánrů</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-wrench nav-icon"></i>
+                  <p>Inventura</p>
                 </a>
               </li>
             </ul>
           </li>
 
-          <!-- Výpůjčky -->
+          <!-- Správa výpůjček -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p>
-                Výpůjčky
-                <i class="fas fa-angle-left right"></i>
+                Správa výpůjček
+                <span class="badge badge-info navbar-badge right">87</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Aktivní výpůjčky</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Nová výpůjčka</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Vrácení</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
-          <!-- Uživatelé -->
+          <!-- Dnešní výpůjčky -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-calendar-day"></i>
               <p>
-                Uživatelé
+                Dnešní výpůjčky
+                <span class="badge badge-success navbar-badge right">23</span>
+              </p>
+            </a>
+          </li>
+
+          <!-- UŽIVATELÉ -->
+          <li class="nav-header">UŽIVATELÉ</li>
+          
+          <!-- Žáci -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-graduation-cap"></i>
+              <p>
+                Žáci
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Žáci</p>
+                  <i class="far fa-list-alt nav-icon"></i>
+                  <p>Seznam žáků</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Učitelé</p>
+                  <i class="far fa-user-plus nav-icon"></i>
+                  <p>Přidat žáka</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rodiče</p>
+                  <i class="far fa-star nav-icon"></i>
+                  <p>Zodpovědnost</p>
                 </a>
               </li>
             </ul>
           </li>
+          
+          <!-- Učitelé -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chalkboard-teacher"></i>
+              <p>Učitelé</p>
+            </a>
+          </li>
 
+          <!-- REPORTY A NÁSTROJE -->
+          <li class="nav-header">REPORTY A NÁSTROJE</li>
+          
           <!-- Statistiky -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-chart-bar"></i>
               <p>
                 Statistiky
                 <i class="fas fa-angle-left right"></i>
@@ -255,22 +353,43 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-chart-line nav-icon"></i>
                   <p>Přehledy</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Export</p>
+                  <i class="far fa-file-excel nav-icon"></i>
+                  <p>Export do Excel</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-chart-pie nav-icon"></i>
+                  <p>Oblíbené žánry</p>
                 </a>
               </li>
             </ul>
+          </li>
+          
+          <!-- Nastavení -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cogs"></i>
+              <p>Nastavení systému</p>
+            </a>
           </li>
 
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
+      
+      <!-- Sidebar footer -->
+      <div class="sidebar-footer mt-auto p-2 text-center" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.1);">
+        <small class="text-muted">
+          © 2025 Knihovna ZŠ <span class="badge badge-success badge-sm ml-2">v1.0</span>
+        </small>
+      </div>
     </div>
     <!-- /.sidebar -->
   </aside>
@@ -281,13 +400,6 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2025 <a href="#">Školní knihovna</a>.</strong>
-    Všechna práva vyhrazena.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Verze</b> 1.0.0
-    </div>
-  </footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
