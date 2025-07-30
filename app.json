@@ -7,9 +7,7 @@
     "ASPNETCORE_URLS": "http://+:8080",
     "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
   },
-  "volumes": [
-    "./logs:/app/logs"
-  ],
+  "volumes": [],
   "depends_on": ["caddy"],
   "networks": ["optimaly-web", "optimaly-apps"], 
   "restart_policy": "unless-stopped",
