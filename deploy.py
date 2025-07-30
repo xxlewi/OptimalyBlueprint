@@ -125,7 +125,7 @@ def wait_for_github_actions():
         if i >= 36:  # After 3 minutes (36 * 5 seconds)
             try:
                 # Test if new image is available (simplified check)
-                pull_cmd = "docker pull ghcr.io/xxlewi/optimalyblueprint:latest"
+                pull_cmd = "docker pull ghcr.io/xxlewi/optimalyblueprint:knihovna-deployment"
                 
                 test_result = subprocess.run([
                     "ssh", "-o", "StrictHostKeyChecking=no", "lewi@147.93.120.231", 
@@ -171,7 +171,7 @@ def main():
     
     # Configuration
     REGISTRY_IMAGE = "ghcr.io/xxlewi/optimalyblueprint"
-    TAG = "latest"
+    TAG = "knihovna-deployment"
     SERVER_USER = "lewi"
     SERVER_HOST = "147.93.120.231"
     SERVER_PATH = "/srv/docker/OptimalyDocker/apps/knihovna/"
