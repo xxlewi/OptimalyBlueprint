@@ -2,9 +2,9 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ knihovna-pro-skoly ]
+    branches: [ knihovna-deployment ]
   pull_request:
-    branches: [ knihovna-pro-skoly ]
+    branches: [ knihovna-deployment ]
 
 env:
   REGISTRY: ghcr.io
