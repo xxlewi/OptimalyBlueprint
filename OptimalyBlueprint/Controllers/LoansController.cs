@@ -2,10 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OptimalyBlueprint.Controllers;
 
-public class LoansController : Controller
+public class LoansController : BaseController
 {
     public IActionResult Index()
     {
+        if (Request.Headers.ContainsKey("X-Requested-With"))
+        {
+            return View();
+        }
         return View();
     }
     

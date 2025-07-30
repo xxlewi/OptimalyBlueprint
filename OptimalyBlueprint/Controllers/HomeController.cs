@@ -15,16 +15,23 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // Handle AJAX requests
+        if (Request.Headers.ContainsKey("X-Requested-With"))
+        {
+            return Json(new { success = true, message = "Dashboard načten úspěšně" });
+        }
+        
         return View();
     }
 
     public IActionResult Privacy()
     {
-        return View();
-    }
-    
-    public IActionResult About()
-    {
+        // Handle AJAX requests
+        if (Request.Headers.ContainsKey("X-Requested-With"))
+        {
+            return Json(new { success = false, message = "Stránka Privacy zatím není implementována" });
+        }
+        
         return View();
     }
 

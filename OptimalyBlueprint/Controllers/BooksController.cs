@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OptimalyBlueprint.Controllers;
 
-public class BooksController : Controller
+public class BooksController : BaseController
 {
     public IActionResult Index()
     {

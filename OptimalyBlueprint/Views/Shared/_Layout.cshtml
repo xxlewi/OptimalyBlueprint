@@ -438,6 +438,143 @@
 <script src="~/lib/adminlte/dist/js/adminlte.min.js"></script>
 <!-- Custom scripts -->
 <script src="~/js/site.js" asp-append-version="true"></script>
+
+<script>
+// Global error handling with AdminLTE Toasts
+$(document).ready(function() {
+    // Function to show AdminLTE toast
+    function showToast(type, title, message) {
+        $(document).Toasts('create', {
+            class: 'bg-' + type,
+            title: title,
+            subtitle: 'Právě teď',
+            body: message,
+            autohide: true,
+            delay: 5000,
+            icon: type === 'success' ? 'fas fa-check' : 
+                  type === 'warning' ? 'fas fa-exclamation-triangle' : 
+                  type === 'danger' ? 'fas fa-exclamation-circle' : 
+                  'fas fa-info-circle'
+        });
+    }
+
+    // Global AJAX error handler - DISABLED to prevent duplicate messages
+    /*$(document).ajaxError(function(event, jqXHR, ajaxSettings, thrownError) {
+        let message = 'Vyskytla se neočekávaná chyba. Zkuste to prosím znovu.';
+        
+        if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+            message = jqXHR.responseJSON.message;
+        }
+        
+        showToast('danger', 'Chyba', message);
+    });*/
+
+    // Convert regular links to AJAX calls
+    $(document).on('click', 'a[href]:not([data-no-ajax]):not([href^="#"]):not([href^="javascript:"]):not([target="_blank"])', function(e) {
+        const href = $(this).attr('href');
+        
+        // Skip external links and special cases
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+            return true;
+        }
+        
+        e.preventDefault();
+        
+        $.ajax({
+            url: href,
+            type: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function(data) {
+                // If response is HTML, replace content
+                if (typeof data === 'string' && data.includes('<html')) {
+                    // Extract content-wrapper content and replace
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const newContent = doc.querySelector('.content-wrapper');
+                    
+                    if (newContent) {
+                        $('.content-wrapper').html(newContent.innerHTML);
+                        // Update URL without page reload
+                        window.history.pushState(null, '', href);
+                    } else {
+                        // Fallback to full page navigation
+                        window.location.href = href;
+                    }
+                } else if (data.success === false) {
+                    showToast('danger', 'Chyba', data.message || 'Vyskytla se chyba.');
+                } else {
+                    showToast('info', 'Informace', 'Funkce zatím není implementována.');
+                }
+            },
+            error: function() {
+                showToast('info', 'Informace', 'Pracujeme na implementaci této funkce.');
+            }
+        });
+    });
+
+    // Handle form submissions via AJAX
+    $(document).on('submit', 'form[data-ajax="true"]', function(e) {
+        e.preventDefault();
+        
+        const form = $(this);
+        const formData = new FormData(form[0]);
+        
+        $.ajax({
+            url: form.attr('action') || window.location.href,
+            type: form.attr('method') || 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: function(data) {
+                if (data.success) {
+                    showToast('success', 'Úspěch', data.message || 'Operace byla úspěšná.');
+                } else {
+                    showToast('danger', 'Chyba', data.message || 'Vyskytla se chyba.');
+                }
+            }
+        });
+    });
+
+    // Show error from URL parameter (for non-AJAX redirects)
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorMsg = urlParams.get('error');
+    if (errorMsg) {
+        showToast('danger', 'Chyba', decodeURIComponent(errorMsg));
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Show success message from URL parameter
+    const successMsg = urlParams.get('success');
+    if (successMsg) {
+        showToast('success', 'Úspěch', decodeURIComponent(successMsg));
+        // Clean URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+});
+
+// Global function to show toast (can be called from anywhere)
+window.showToast = function(type, title, message) {
+    $(document).Toasts('create', {
+        class: 'bg-' + type,
+        title: title,
+        subtitle: 'Právě teď', 
+        body: message,
+        autohide: true,
+        delay: 5000,
+        icon: type === 'success' ? 'fas fa-check' : 
+              type === 'warning' ? 'fas fa-exclamation-triangle' : 
+              type === 'danger' ? 'fas fa-exclamation-circle' : 
+              'fas fa-info-circle'
+    });
+};
+</script>
+
 @await RenderSectionAsync("Scripts", required: false)
 
 </body>
