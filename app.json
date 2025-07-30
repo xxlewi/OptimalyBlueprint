@@ -1,0 +1,17 @@
+{
+  "subdomain": "knihovna.optimaly.net",
+  "port": 8080,
+  "health_endpoint": "/health",
+  "environment": {
+    "ASPNETCORE_ENVIRONMENT": "${ASPNETCORE_ENVIRONMENT}",
+    "ASPNETCORE_URLS": "http://+:8080",
+    "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true"
+  },
+  "volumes": [
+    "./logs:/app/logs"
+  ],
+  "depends_on": ["caddy"],
+  "networks": ["optimaly-web", "optimaly-apps"], 
+  "restart_policy": "unless-stopped",
+  "database_connection_var": "KNIHOVNA_DB_CONNECTION"
+}
